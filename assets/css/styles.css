@@ -212,6 +212,7 @@ textarea {
   display: none;
   inset: 0;
   padding: 0;
+  pointer-events: none;
   position: fixed;
   touch-action: manipulation;
   width: 100%;
@@ -220,6 +221,10 @@ textarea {
 
 .menu-backdrop.is-open {
   display: block;
+}
+
+.menu-backdrop.is-open.is-interactive {
+  pointer-events: auto;
 }
 
 .site-nav a {

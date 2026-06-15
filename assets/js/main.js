@@ -10,7 +10,9 @@ document.querySelectorAll('a[href*="results.html"]').forEach((link) => {
 if (menuButton && nav) {
   let isMenuOpen = false;
   let lastMenuToggleAt = 0;
-  const duplicateTapWindow = 500;
+  let menuCloseLockedUntil = 0;
+  let backdropUnlockTimer = 0;
+  const duplicateTapWindow = 1200;
   const menuBackdrop = document.createElement("button");
 
   if (!nav.id) nav.id = "site-navigation";
@@ -26,6 +28,18 @@ if (menuButton && nav) {
     nav.classList.toggle("is-open", isMenuOpen);
     menuBackdrop.classList.toggle("is-open", isMenuOpen);
     menuButton.setAttribute("aria-expanded", String(isMenuOpen));
+
+    window.clearTimeout(backdropUnlockTimer);
+    menuBackdrop.classList.remove("is-interactive");
+
+    if (isMenuOpen) {
+      menuCloseLockedUntil = Date.now() + duplicateTapWindow;
+      backdropUnlockTimer = window.setTimeout(() => {
+        if (isMenuOpen) menuBackdrop.classList.add("is-interactive");
+      }, duplicateTapWindow);
+    } else {
+      menuCloseLockedUntil = 0;
+    }
   };
 
   menuButton.addEventListener("click", (event) => {
@@ -34,6 +48,7 @@ if (menuButton && nav) {
 
     const now = Date.now();
     if (now - lastMenuToggleAt < duplicateTapWindow) return;
+    if (isMenuOpen && now < menuCloseLockedUntil) return;
 
     lastMenuToggleAt = now;
     setMenuOpen(!isMenuOpen);
@@ -50,6 +65,7 @@ if (menuButton && nav) {
   menuBackdrop.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
+    if (Date.now() < menuCloseLockedUntil) return;
     setMenuOpen(false);
   });
 
