@@ -2014,6 +2014,7 @@ td {
 
 .coach-feature__photo img {
   aspect-ratio: 4 / 5;
+  height: auto;
   object-position: 47% center;
 }
 
