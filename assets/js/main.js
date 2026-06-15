@@ -9,6 +9,9 @@ document.querySelectorAll('a[href*="results.html"]').forEach((link) => {
 
 if (menuButton && nav) {
   let isMenuOpen = false;
+  let lastMenuToggleAt = 0;
+  let menuOpenedAt = 0;
+  const duplicateTapWindow = 500;
 
   const setMenuOpen = (nextOpen) => {
     isMenuOpen = nextOpen;
@@ -19,6 +22,12 @@ if (menuButton && nav) {
   menuButton.addEventListener("click", (event) => {
     event.preventDefault();
     event.stopPropagation();
+
+    const now = Date.now();
+    if (now - lastMenuToggleAt < duplicateTapWindow) return;
+
+    lastMenuToggleAt = now;
+    if (!isMenuOpen) menuOpenedAt = now;
     setMenuOpen(!isMenuOpen);
   });
 
@@ -33,6 +42,7 @@ if (menuButton && nav) {
   document.addEventListener("click", (event) => {
     if (!isMenuOpen) return;
     if (menuButton.contains(event.target) || nav.contains(event.target)) return;
+    if (Date.now() - menuOpenedAt < duplicateTapWindow) return;
 
     setMenuOpen(false);
   });
@@ -44,11 +54,6 @@ if (menuButton && nav) {
     menuButton.focus();
   });
 
-  window.addEventListener("resize", () => {
-    if (window.innerWidth >= 1024 && isMenuOpen) {
-      setMenuOpen(false);
-    }
-  });
 }
 
 document.querySelectorAll(".faq__button").forEach((button) => {
