@@ -76,16 +76,6 @@ if (menuButton && nav) {
     menuButton.focus();
   });
 
-  const desktopMenuQuery = window.matchMedia("(min-width: 1024px)");
-  const handleDesktopMenu = (event) => {
-    if (event.matches) setMenuOpen(false);
-  };
-
-  if (desktopMenuQuery.addEventListener) {
-    desktopMenuQuery.addEventListener("change", handleDesktopMenu);
-  } else {
-    desktopMenuQuery.addListener(handleDesktopMenu);
-  }
 }
 
 document.querySelectorAll(".faq__button").forEach((button) => {
