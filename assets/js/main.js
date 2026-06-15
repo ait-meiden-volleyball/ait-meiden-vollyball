@@ -10,12 +10,21 @@ document.querySelectorAll('a[href*="results.html"]').forEach((link) => {
 if (menuButton && nav) {
   let isMenuOpen = false;
   let lastMenuToggleAt = 0;
-  let menuOpenedAt = 0;
   const duplicateTapWindow = 500;
+  const menuBackdrop = document.createElement("button");
+
+  if (!nav.id) nav.id = "site-navigation";
+  menuButton.setAttribute("aria-controls", nav.id);
+  menuBackdrop.className = "menu-backdrop";
+  menuBackdrop.type = "button";
+  menuBackdrop.tabIndex = -1;
+  menuBackdrop.setAttribute("aria-label", "メニューを閉じる");
+  document.body.append(menuBackdrop);
 
   const setMenuOpen = (nextOpen) => {
     isMenuOpen = nextOpen;
     nav.classList.toggle("is-open", isMenuOpen);
+    menuBackdrop.classList.toggle("is-open", isMenuOpen);
     menuButton.setAttribute("aria-expanded", String(isMenuOpen));
   };
 
@@ -27,23 +36,20 @@ if (menuButton && nav) {
     if (now - lastMenuToggleAt < duplicateTapWindow) return;
 
     lastMenuToggleAt = now;
-    if (!isMenuOpen) menuOpenedAt = now;
     setMenuOpen(!isMenuOpen);
   });
 
   nav.addEventListener("click", (event) => {
     event.stopPropagation();
 
-    if (event.target.closest?.("a")) {
+    if (event.target instanceof Element && event.target.closest("a")) {
       setMenuOpen(false);
     }
   });
 
-  document.addEventListener("click", (event) => {
-    if (!isMenuOpen) return;
-    if (menuButton.contains(event.target) || nav.contains(event.target)) return;
-    if (Date.now() - menuOpenedAt < duplicateTapWindow) return;
-
+  menuBackdrop.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
     setMenuOpen(false);
   });
 
@@ -54,6 +60,16 @@ if (menuButton && nav) {
     menuButton.focus();
   });
 
+  const desktopMenuQuery = window.matchMedia("(min-width: 1024px)");
+  const handleDesktopMenu = (event) => {
+    if (event.matches) setMenuOpen(false);
+  };
+
+  if (desktopMenuQuery.addEventListener) {
+    desktopMenuQuery.addEventListener("change", handleDesktopMenu);
+  } else {
+    desktopMenuQuery.addListener(handleDesktopMenu);
+  }
 }
 
 document.querySelectorAll(".faq__button").forEach((button) => {

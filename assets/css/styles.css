@@ -205,6 +205,23 @@ textarea {
   display: grid;
 }
 
+.menu-backdrop {
+  -webkit-tap-highlight-color: transparent;
+  background: rgba(5, 2, 9, 0.42);
+  border: 0;
+  display: none;
+  inset: 0;
+  padding: 0;
+  position: fixed;
+  touch-action: manipulation;
+  width: 100%;
+  z-index: 99;
+}
+
+.menu-backdrop.is-open {
+  display: block;
+}
+
 .site-nav a {
   border-bottom: 1px solid var(--line);
   color: var(--muted);
@@ -1698,6 +1715,13 @@ td {
 
   .growth-timeline article > div {
     min-height: 190px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .menu-backdrop,
+  .menu-backdrop.is-open {
+    display: none;
   }
 }
 
