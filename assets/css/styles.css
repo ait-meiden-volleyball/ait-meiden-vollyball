@@ -3119,6 +3119,23 @@ td {
 }
 
 @media (min-width: 720px) and (max-width: 1099px) {
+  .quick-apply__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(150px, 200px);
+    width: 100%;
+  }
+
+  .quick-apply__inner > div {
+    min-width: 0;
+  }
+
+  .quick-apply .button--coming-soon {
+    box-sizing: border-box;
+    justify-self: end;
+    max-width: 200px;
+    min-width: 0;
+    width: 100%;
+  }
+
   .menu-button {
     display: inline-flex;
   }
