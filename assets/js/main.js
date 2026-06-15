@@ -70,6 +70,7 @@ if (menuButton && nav) {
 
   const setMenuOpen = (nextOpen, source = "unknown") => {
     if (menuDebugEnabled && !nextOpen) {
+      menuDebug(`menu close attempted source=${source}`);
       menuDebug(`menu close BLOCKED source=${source}`);
       return;
     }
