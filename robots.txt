@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://meiden-volleyball.com/sitemap.xml
