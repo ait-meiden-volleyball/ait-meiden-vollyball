@@ -8,12 +8,35 @@ document.querySelectorAll('a[href*="results.html"]').forEach((link) => {
 });
 
 if (menuButton && nav) {
+  const menuDebugEnabled = new URLSearchParams(window.location.search).get("menu-debug") === "1";
   let isMenuOpen = false;
   let lastMenuToggleAt = 0;
   let menuCloseLockedUntil = 0;
   let backdropUnlockTimer = 0;
   const duplicateTapWindow = 1200;
   const menuBackdrop = document.createElement("button");
+  let debugPanel;
+  let debugLines;
+
+  const describeTarget = (target) => {
+    if (!(target instanceof Element)) return String(target);
+    const name = target.getAttribute("aria-label") || target.textContent?.trim().slice(0, 24) || "";
+    const classes = target.classList.length ? `.${Array.from(target.classList).join(".")}` : "";
+    return `${target.tagName.toLowerCase()}${target.id ? `#${target.id}` : ""}${classes}${name ? ` [${name}]` : ""}`;
+  };
+
+  const menuDebug = (message, event) => {
+    if (!menuDebugEnabled) return;
+    const details = event
+      ? ` target=${describeTarget(event.target)} phase=${event.eventPhase} pointer=${event.pointerType || "-"}`
+      : "";
+    const line = `${new Date().toISOString().slice(11, 23)} ${message}${details}`;
+    console.log(`[MENU DEBUG] ${line}`);
+    if (debugLines) {
+      debugLines.textContent += `${line}\n`;
+      debugLines.scrollTop = debugLines.scrollHeight;
+    }
+  };
 
   if (!nav.id) nav.id = "site-navigation";
   menuButton.setAttribute("aria-controls", nav.id);
@@ -23,11 +46,39 @@ if (menuButton && nav) {
   menuBackdrop.setAttribute("aria-label", "メニューを閉じる");
   document.body.append(menuBackdrop);
 
-  const setMenuOpen = (nextOpen) => {
+  if (menuDebugEnabled) {
+    debugPanel = document.createElement("aside");
+    debugPanel.className = "menu-debug-panel";
+    debugPanel.setAttribute("aria-live", "polite");
+    debugPanel.innerHTML = '<strong>MENU DEBUG / close disabled</strong><pre></pre>';
+    debugLines = debugPanel.querySelector("pre");
+    document.body.append(debugPanel);
+
+    ["touchstart", "touchend", "pointerdown", "pointerup", "click"].forEach((type) => {
+      document.addEventListener(type, (event) => menuDebug(`${type} capture`, event), true);
+      document.addEventListener(type, (event) => menuDebug(`${type} bubble`, event));
+    });
+
+    window.addEventListener("resize", () => {
+      menuDebug(`resize width=${window.innerWidth} visual=${window.visualViewport?.width || "-"} nav=${getComputedStyle(nav).display}`);
+    });
+
+    window.visualViewport?.addEventListener("resize", () => {
+      menuDebug(`visualViewport resize width=${window.visualViewport?.width || "-"} nav=${getComputedStyle(nav).display}`);
+    });
+  }
+
+  const setMenuOpen = (nextOpen, source = "unknown") => {
+    if (menuDebugEnabled && !nextOpen) {
+      menuDebug(`menu close BLOCKED source=${source}`);
+      return;
+    }
+
     isMenuOpen = nextOpen;
     nav.classList.toggle("is-open", isMenuOpen);
     menuBackdrop.classList.toggle("is-open", isMenuOpen);
     menuButton.setAttribute("aria-expanded", String(isMenuOpen));
+    menuDebug(`${isMenuOpen ? "menu open" : "menu close"} source=${source}`);
 
     window.clearTimeout(backdropUnlockTimer);
     menuBackdrop.classList.remove("is-interactive");
@@ -43,22 +94,29 @@ if (menuButton && nav) {
   };
 
   menuButton.addEventListener("click", (event) => {
+    menuDebug("menu button click handler", event);
     event.preventDefault();
     event.stopPropagation();
 
     const now = Date.now();
-    if (now - lastMenuToggleAt < duplicateTapWindow) return;
-    if (isMenuOpen && now < menuCloseLockedUntil) return;
+    if (now - lastMenuToggleAt < duplicateTapWindow) {
+      menuDebug("duplicate click ignored", event);
+      return;
+    }
+    if (isMenuOpen && now < menuCloseLockedUntil) {
+      menuDebug("close lock active", event);
+      return;
+    }
 
     lastMenuToggleAt = now;
-    setMenuOpen(!isMenuOpen);
+    setMenuOpen(menuDebugEnabled ? true : !isMenuOpen, "menu-button");
   });
 
   nav.addEventListener("click", (event) => {
     event.stopPropagation();
 
     if (event.target instanceof Element && event.target.closest("a")) {
-      setMenuOpen(false);
+      setMenuOpen(false, "nav-link");
     }
   });
 
@@ -66,15 +124,27 @@ if (menuButton && nav) {
     event.preventDefault();
     event.stopPropagation();
     if (Date.now() < menuCloseLockedUntil) return;
-    setMenuOpen(false);
+    setMenuOpen(false, "backdrop");
   });
 
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape" || !isMenuOpen) return;
 
-    setMenuOpen(false);
+    setMenuOpen(false, "escape-key");
     menuButton.focus();
   });
+
+  if (menuDebugEnabled) {
+    new MutationObserver(() => {
+      menuDebug(`mutation expanded=${menuButton.getAttribute("aria-expanded")} navClass=${nav.className} navDisplay=${getComputedStyle(nav).display}`);
+    }).observe(nav, { attributes: true, attributeFilter: ["class", "style"] });
+
+    new MutationObserver(() => {
+      menuDebug(`mutation button expanded=${menuButton.getAttribute("aria-expanded")}`);
+    }).observe(menuButton, { attributes: true, attributeFilter: ["aria-expanded", "class", "style"] });
+
+    menuDebug(`debug ready width=${window.innerWidth} visual=${window.visualViewport?.width || "-"}`);
+  }
 
 }
 

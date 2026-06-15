@@ -227,6 +227,33 @@ textarea {
   pointer-events: auto;
 }
 
+.menu-debug-panel {
+  background: rgba(0, 0, 0, 0.96);
+  border-top: 2px solid var(--gold);
+  bottom: 0;
+  color: #fff;
+  font: 11px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+  left: 0;
+  max-height: 38vh;
+  padding: 0.65rem;
+  position: fixed;
+  right: 0;
+  z-index: 1000;
+}
+
+.menu-debug-panel strong {
+  color: var(--gold);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+.menu-debug-panel pre {
+  margin: 0;
+  max-height: 30vh;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
 .site-nav a {
   border-bottom: 1px solid var(--line);
   color: var(--muted);
