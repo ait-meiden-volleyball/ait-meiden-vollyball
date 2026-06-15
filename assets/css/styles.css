@@ -1728,6 +1728,10 @@ td {
   .menu-backdrop.is-open {
     display: none;
   }
+
+  .site-nav.is-open {
+    display: flex;
+  }
 }
 
 .support-fund-title span {
