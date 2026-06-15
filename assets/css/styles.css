@@ -3122,6 +3122,10 @@ td {
 }
 
 @media (min-width: 720px) and (max-width: 1099px) {
+  .career-section__title span {
+    display: block;
+  }
+
   .quick-apply__inner {
     grid-template-columns: minmax(0, 1fr) minmax(150px, 200px);
     width: 100%;
