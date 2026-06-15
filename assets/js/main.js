@@ -8,9 +8,46 @@ document.querySelectorAll('a[href*="results.html"]').forEach((link) => {
 });
 
 if (menuButton && nav) {
-  menuButton.addEventListener("click", () => {
-    const isOpen = nav.classList.toggle("is-open");
-    menuButton.setAttribute("aria-expanded", String(isOpen));
+  let isMenuOpen = false;
+
+  const setMenuOpen = (nextOpen) => {
+    isMenuOpen = nextOpen;
+    nav.classList.toggle("is-open", isMenuOpen);
+    menuButton.setAttribute("aria-expanded", String(isMenuOpen));
+  };
+
+  menuButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    setMenuOpen(!isMenuOpen);
+  });
+
+  nav.addEventListener("click", (event) => {
+    event.stopPropagation();
+
+    if (event.target.closest?.("a")) {
+      setMenuOpen(false);
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!isMenuOpen) return;
+    if (menuButton.contains(event.target) || nav.contains(event.target)) return;
+
+    setMenuOpen(false);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !isMenuOpen) return;
+
+    setMenuOpen(false);
+    menuButton.focus();
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.innerWidth >= 1024 && isMenuOpen) {
+      setMenuOpen(false);
+    }
   });
 }
 

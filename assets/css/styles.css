@@ -136,12 +136,14 @@ textarea {
 
 .menu-button {
   align-items: center;
+  -webkit-tap-highlight-color: transparent;
   background: transparent;
   border: 1px solid var(--line);
   color: var(--ink);
   display: inline-flex;
   height: 42px;
   justify-content: center;
+  touch-action: manipulation;
   width: 42px;
 }
 
