@@ -2817,7 +2817,15 @@ td {
     border: 0;
   }
 
-  .site-header,
+  .site-header {
+    max-width: none;
+    overflow: visible;
+  }
+
+  .site-header__inner {
+    overflow: visible;
+  }
+
   main,
   .site-footer {
     max-width: none;
