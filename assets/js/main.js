@@ -195,13 +195,15 @@ document.querySelectorAll(".meiden-gallery").forEach((gallery) => {
   let lastTime = 0;
   let resumeTimer = 0;
   let setWidth = 0;
-  const speed = 34;
+  let pixelsPerSecond = 90;
+  const loopSeconds = 55;
 
   const measureSetWidth = () => {
     const firstSetRect = firstSet.getBoundingClientRect();
     const railStyles = window.getComputedStyle(rail);
     const gap = Number(String(railStyles.columnGap || railStyles.gap || "0").replace("px", "")) || 0;
     setWidth = firstSetRect.width + gap;
+    pixelsPerSecond = setWidth / loopSeconds;
   };
 
   const normalizePosition = () => {
@@ -216,7 +218,7 @@ document.querySelectorAll(".meiden-gallery").forEach((gallery) => {
 
     if (lastTime) {
       const delta = Math.min(time - lastTime, 64);
-      viewport.scrollLeft += (speed * delta) / 1000;
+      viewport.scrollLeft += (pixelsPerSecond * delta) / 1000;
       normalizePosition();
     }
 
