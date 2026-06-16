@@ -196,7 +196,7 @@ document.querySelectorAll(".meiden-gallery").forEach((gallery) => {
   let resumeTimer = 0;
   let setWidth = 0;
   let pixelsPerSecond = 90;
-  const loopSeconds = 55;
+  const loopSeconds = 160;
 
   const measureSetWidth = () => {
     const firstSetRect = firstSet.getBoundingClientRect();
