@@ -1966,6 +1966,7 @@ td {
   display: flex;
   gap: 10px;
   transform: translate3d(0, 0, 0);
+  will-change: transform;
   width: max-content;
 }
 
@@ -1976,6 +1977,7 @@ td {
 }
 
 .meiden-gallery__item {
+  background: #130d1f;
   flex: 0 0 clamp(300px, 36vw, 560px);
   height: clamp(280px, 31vw, 400px);
   margin: 0;
@@ -1983,17 +1985,20 @@ td {
 }
 
 .meiden-gallery__item img {
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
   display: block;
   height: 100%;
   object-fit: cover;
-  transform: translateZ(0);
+  opacity: 1;
   transition: transform 0.45s ease;
+  visibility: visible;
   width: 100%;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .meiden-gallery__item:hover img {
-    transform: scale(1.03) translateZ(0);
+    transform: scale(1.03);
   }
 }
 
