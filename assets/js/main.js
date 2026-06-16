@@ -195,21 +195,22 @@ document.querySelectorAll(".meiden-gallery").forEach((gallery) => {
   let lastTime = 0;
   let resumeTimer = 0;
   let setWidth = 0;
+  let resetPoint = 0;
   let pixelsPerSecond = 90;
   const loopSeconds = 160;
 
   const measureSetWidth = () => {
-    const firstSetRect = firstSet.getBoundingClientRect();
-    const railStyles = window.getComputedStyle(rail);
-    const gap = Number(String(railStyles.columnGap || railStyles.gap || "0").replace("px", "")) || 0;
-    setWidth = firstSetRect.width + gap;
+    resetPoint = clone.offsetLeft - firstSet.offsetLeft;
+    setWidth = resetPoint || firstSet.scrollWidth;
     pixelsPerSecond = setWidth / loopSeconds;
   };
 
   const normalizePosition = () => {
-    if (!setWidth) return;
-    while (viewport.scrollLeft >= setWidth) {
-      viewport.scrollLeft -= setWidth;
+    if (!setWidth || !resetPoint) return;
+    const maxBeforeBlank = rail.scrollWidth - viewport.clientWidth;
+
+    while (viewport.scrollLeft >= resetPoint || viewport.scrollLeft >= maxBeforeBlank - 2) {
+      viewport.scrollLeft = Math.max(0, viewport.scrollLeft - resetPoint);
     }
   };
 
