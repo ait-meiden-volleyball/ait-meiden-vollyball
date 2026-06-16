@@ -182,35 +182,33 @@ document.querySelectorAll(".meiden-gallery").forEach((gallery) => {
 
   if (!viewport || !rail || !firstSet) return;
 
-  const clone = firstSet.cloneNode(true);
-  clone.setAttribute("aria-hidden", "true");
-  clone.querySelectorAll("img").forEach((img) => {
-    img.loading = "eager";
-    img.decoding = "sync";
-    img.setAttribute("fetchpriority", "high");
-  });
-  rail.append(clone);
-
   let animationFrame = 0;
   let lastTime = 0;
   let resumeTimer = 0;
   let setWidth = 0;
-  let resetPoint = 0;
+  let itemStep = 0;
   let pixelsPerSecond = 90;
   const loopSeconds = 160;
 
   const measureSetWidth = () => {
-    resetPoint = clone.offsetLeft - firstSet.offsetLeft;
-    setWidth = resetPoint || firstSet.scrollWidth;
+    const firstItem = firstSet.firstElementChild;
+    const styles = window.getComputedStyle(firstSet);
+    const gap = Number(String(styles.columnGap || styles.gap || "0").replace("px", "")) || 0;
+    itemStep = firstItem ? firstItem.getBoundingClientRect().width + gap : 0;
+    setWidth = firstSet.getBoundingClientRect().width || firstSet.scrollWidth;
     pixelsPerSecond = setWidth / loopSeconds;
   };
 
   const normalizePosition = () => {
-    if (!setWidth || !resetPoint) return;
-    const maxBeforeBlank = rail.scrollWidth - viewport.clientWidth;
+    if (!itemStep) return;
 
-    while (viewport.scrollLeft >= resetPoint || viewport.scrollLeft >= maxBeforeBlank - 2) {
-      viewport.scrollLeft = Math.max(0, viewport.scrollLeft - resetPoint);
+    let guard = 0;
+    while (viewport.scrollLeft >= itemStep && guard < firstSet.children.length) {
+      const firstItem = firstSet.firstElementChild;
+      if (!firstItem) return;
+      firstSet.append(firstItem);
+      viewport.scrollLeft -= itemStep;
+      guard += 1;
     }
   };
 
