@@ -2000,6 +2000,7 @@ td {
 
 .brand-scroll__group {
   display: flex;
+  flex: 0 0 auto;
   gap: var(--scroll-gap);
   padding-right: var(--scroll-gap);
 }
