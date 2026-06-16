@@ -2008,7 +2008,7 @@ td {
   }
 
   to {
-    transform: translate3d(calc(-50% - 5px), 0, 0);
+    transform: translate3d(calc(-100% + 100vw), 0, 0);
   }
 }
 
