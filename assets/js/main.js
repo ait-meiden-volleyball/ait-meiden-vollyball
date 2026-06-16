@@ -175,6 +175,52 @@ document.querySelectorAll("[data-application-url]").forEach((link) => {
   link.removeAttribute("tabindex");
 });
 
+document.querySelectorAll(".brand-scroll").forEach((gallery) => {
+  const track = gallery.querySelector(".brand-scroll__track");
+  const groups = [...gallery.querySelectorAll(".brand-scroll__group")];
+  const sourceGroup = groups[0];
+  if (!track || !sourceGroup) return;
+
+  groups.slice(1).forEach((group) => group.remove());
+
+  const sourceImages = [...sourceGroup.querySelectorAll("img")];
+  const waitForImage = (image) => {
+    if (image.complete && image.naturalWidth > 0) return Promise.resolve();
+
+    return new Promise((resolve) => {
+      const done = () => resolve();
+      image.addEventListener("load", done, { once: true });
+      image.addEventListener("error", done, { once: true });
+    });
+  };
+
+  const activateGallery = () => {
+    if (gallery.classList.contains("is-ready")) return;
+
+    const clone = sourceGroup.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    clone.querySelectorAll("img").forEach((image) => {
+      image.alt = "";
+      image.removeAttribute("loading");
+    });
+    track.append(clone);
+
+    const setDistance = () => {
+      gallery.style.setProperty("--brand-scroll-distance", `${sourceGroup.getBoundingClientRect().width}px`);
+    };
+
+    setDistance();
+    window.addEventListener("resize", setDistance);
+    window.visualViewport?.addEventListener("resize", setDistance);
+    gallery.classList.add("is-ready");
+  };
+
+  Promise.all(sourceImages.map(waitForImage)).then(activateGallery);
+  window.setTimeout(() => {
+    if (!gallery.classList.contains("is-ready")) activateGallery();
+  }, 4000);
+});
+
 window.addEventListener("load", () => {
   if (!window.location.hash) return;
 

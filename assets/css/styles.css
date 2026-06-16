@@ -1992,10 +1992,17 @@ td {
 
 .brand-scroll__track {
   --scroll-gap: 10px;
-  animation: brandScroll 36s linear infinite;
   display: flex;
+  opacity: 0;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 0.3s ease;
   width: max-content;
   will-change: transform;
+}
+
+.brand-scroll.is-ready .brand-scroll__track {
+  animation: brandScroll 36s linear infinite;
+  opacity: 1;
 }
 
 .brand-scroll__group {
@@ -2043,7 +2050,7 @@ td {
   }
 
   to {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(calc(-1 * var(--brand-scroll-distance, 50%)), 0, 0);
   }
 }
 
