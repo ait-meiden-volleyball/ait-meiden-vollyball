@@ -1932,128 +1932,80 @@ td {
   min-width: min(100%, 220px);
 }
 
-.brand-scroll {
-  background:
-    linear-gradient(180deg, rgba(8, 4, 13, 0.92), rgba(18, 9, 29, 0.98)),
-    radial-gradient(circle at 12% 0%, rgba(216, 183, 91, 0.12), transparent 22rem);
+.meiden-gallery {
+  background: linear-gradient(180deg, #09050f 0%, #130d1f 100%);
   border-block: 1px solid rgba(216, 183, 91, 0.2);
   overflow: hidden;
   padding: 1rem 0 1.25rem;
-  position: relative;
 }
 
-.brand-scroll::before,
-.brand-scroll::after {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: min(16vw, 180px);
-  z-index: 2;
-}
-
-.brand-scroll::before {
-  background: linear-gradient(90deg, #0b0612 0%, rgba(11, 6, 18, 0));
-  left: 0;
-}
-
-.brand-scroll::after {
-  background: linear-gradient(270deg, #0b0612 0%, rgba(11, 6, 18, 0));
-  right: 0;
-}
-
-.brand-scroll__head {
-  margin: 0 auto 0.7rem;
-  max-width: var(--max);
-  padding: 0 1rem;
-  position: relative;
-  z-index: 3;
-}
-
-.brand-scroll__head span {
+.meiden-gallery__label {
   color: rgba(216, 183, 91, 0.86);
-  display: inline-block;
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.16em;
+  margin: 0 auto 0.75rem;
+  max-width: var(--max);
+  padding: 0 1rem;
 }
 
-.brand-scroll__viewport {
+.meiden-gallery__viewport {
   -webkit-overflow-scrolling: touch;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
 }
 
-.brand-scroll__viewport::-webkit-scrollbar {
+.meiden-gallery__viewport::-webkit-scrollbar {
   display: none;
 }
 
-.brand-scroll__track {
-  --scroll-gap: 10px;
+.meiden-gallery__rail {
+  animation: meidenGalleryScroll 34s linear infinite;
+  backface-visibility: hidden;
   display: flex;
-  opacity: 0;
+  gap: 10px;
   transform: translate3d(0, 0, 0);
-  transition: opacity 0.3s ease;
   width: max-content;
-  will-change: transform;
 }
 
-.brand-scroll.is-ready .brand-scroll__track {
-  animation: brandScroll 36s linear infinite;
-  opacity: 1;
-}
-
-.brand-scroll__group {
+.meiden-gallery__set {
   display: flex;
   flex: 0 0 auto;
-  gap: var(--scroll-gap);
-  padding-right: var(--scroll-gap);
+  gap: 10px;
 }
 
-.brand-scroll figure {
-  background: #0b0612;
-  flex: 0 0 clamp(280px, 33vw, 560px);
+.meiden-gallery__item {
+  flex: 0 0 clamp(300px, 36vw, 560px);
   height: clamp(280px, 31vw, 400px);
   margin: 0;
   overflow: hidden;
-  position: relative;
 }
 
-.brand-scroll figure::after {
-  background:
-    linear-gradient(180deg, rgba(10, 5, 17, 0), rgba(10, 5, 17, 0.2)),
-    linear-gradient(90deg, rgba(216, 183, 91, 0.12), transparent 22%);
-  content: "";
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-}
-
-.brand-scroll img {
+.meiden-gallery__item img {
+  display: block;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transform: translateZ(0);
+  transition: transform 0.45s ease;
   width: 100%;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .brand-scroll figure:hover img {
-    transform: scale(1.035);
+  .meiden-gallery__item:hover img {
+    transform: scale(1.03) translateZ(0);
   }
 }
 
-@keyframes brandScroll {
+@keyframes meidenGalleryScroll {
   from {
     transform: translate3d(0, 0, 0);
   }
 
   to {
-    transform: translate3d(calc(-1 * var(--brand-scroll-distance, 50%)), 0, 0);
+    transform: translate3d(calc(-50% - 5px), 0, 0);
   }
 }
-
 
 .support-layout,
 .coach-feature,
@@ -3297,26 +3249,22 @@ td {
 }
 
 @media (max-width: 768px) {
-  .brand-scroll {
-    padding: 0.75rem 0 0.95rem;
+  .meiden-gallery {
+    padding: 0.8rem 0 1rem;
   }
 
-  .brand-scroll__head {
-    margin-bottom: 0.55rem;
-    padding-inline: 1rem;
-  }
-
-  .brand-scroll__head span {
+  .meiden-gallery__label {
     font-size: 0.62rem;
     letter-spacing: 0.14em;
+    margin-bottom: 0.6rem;
   }
 
-  .brand-scroll__track {
-    --scroll-gap: 8px;
-    animation-duration: 34s;
+  .meiden-gallery__rail,
+  .meiden-gallery__set {
+    gap: 8px;
   }
 
-  .brand-scroll figure {
+  .meiden-gallery__item {
     flex-basis: 78vw;
     height: 300px;
   }
