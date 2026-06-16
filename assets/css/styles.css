@@ -1961,7 +1961,7 @@ td {
 }
 
 .meiden-gallery__rail {
-  animation: meidenGalleryScroll 52s linear infinite;
+  animation: meidenGalleryScroll 208s linear infinite;
   backface-visibility: hidden;
   display: flex;
   gap: 10px;
