@@ -175,6 +175,92 @@ document.querySelectorAll("[data-application-url]").forEach((link) => {
   link.removeAttribute("tabindex");
 });
 
+document.querySelectorAll(".meiden-gallery").forEach((gallery) => {
+  const viewport = gallery.querySelector(".meiden-gallery__viewport");
+  const rail = gallery.querySelector(".meiden-gallery__rail");
+  const firstSet = gallery.querySelector(".meiden-gallery__set");
+
+  if (!viewport || !rail || !firstSet) return;
+
+  const clone = firstSet.cloneNode(true);
+  clone.setAttribute("aria-hidden", "true");
+  clone.querySelectorAll("img").forEach((img) => {
+    img.loading = "eager";
+    img.decoding = "sync";
+    img.setAttribute("fetchpriority", "high");
+  });
+  rail.append(clone);
+
+  let animationFrame = 0;
+  let lastTime = 0;
+  let resumeTimer = 0;
+  let setWidth = 0;
+  const speed = 34;
+
+  const measureSetWidth = () => {
+    const firstSetRect = firstSet.getBoundingClientRect();
+    const railStyles = window.getComputedStyle(rail);
+    const gap = Number(String(railStyles.columnGap || railStyles.gap || "0").replace("px", "")) || 0;
+    setWidth = firstSetRect.width + gap;
+  };
+
+  const normalizePosition = () => {
+    if (!setWidth) return;
+    while (viewport.scrollLeft >= setWidth) {
+      viewport.scrollLeft -= setWidth;
+    }
+  };
+
+  const tick = (time) => {
+    if (!setWidth) measureSetWidth();
+
+    if (lastTime) {
+      const delta = Math.min(time - lastTime, 64);
+      viewport.scrollLeft += (speed * delta) / 1000;
+      normalizePosition();
+    }
+
+    lastTime = time;
+    animationFrame = window.requestAnimationFrame(tick);
+  };
+
+  const start = () => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    window.cancelAnimationFrame(animationFrame);
+    measureSetWidth();
+    normalizePosition();
+    lastTime = 0;
+    animationFrame = window.requestAnimationFrame(tick);
+  };
+
+  const pause = () => {
+    window.cancelAnimationFrame(animationFrame);
+    window.clearTimeout(resumeTimer);
+  };
+
+  const resumeSoon = () => {
+    pause();
+    resumeTimer = window.setTimeout(start, 1800);
+  };
+
+  window.addEventListener("resize", () => {
+    measureSetWidth();
+    normalizePosition();
+  });
+
+  viewport.addEventListener("pointerdown", pause, { passive: true });
+  viewport.addEventListener("pointerup", resumeSoon, { passive: true });
+  viewport.addEventListener("pointercancel", resumeSoon, { passive: true });
+  viewport.addEventListener("touchend", resumeSoon, { passive: true });
+  viewport.addEventListener("scroll", normalizePosition, { passive: true });
+
+  if (document.readyState === "complete") {
+    start();
+  } else {
+    window.addEventListener("load", start, { once: true });
+  }
+});
+
 window.addEventListener("load", () => {
   if (!window.location.hash) return;
 

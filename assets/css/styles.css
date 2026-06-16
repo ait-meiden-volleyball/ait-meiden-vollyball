@@ -1954,6 +1954,7 @@ td {
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
+  touch-action: pan-x;
 }
 
 .meiden-gallery__viewport::-webkit-scrollbar {
@@ -1961,12 +1962,9 @@ td {
 }
 
 .meiden-gallery__rail {
-  animation: meidenGalleryScroll 208s linear infinite;
-  backface-visibility: hidden;
   display: flex;
   gap: 10px;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
+  min-width: max-content;
   width: max-content;
 }
 
@@ -1999,16 +1997,6 @@ td {
 @media (hover: hover) and (pointer: fine) {
   .meiden-gallery__item:hover img {
     transform: scale(1.03);
-  }
-}
-
-@keyframes meidenGalleryScroll {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: translate3d(calc(-100% + 100vw), 0, 0);
   }
 }
 
