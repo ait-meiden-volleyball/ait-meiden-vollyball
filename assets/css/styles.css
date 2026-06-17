@@ -3368,7 +3368,9 @@ td {
 
   .information-strip__items span {
     line-height: 1.24;
-    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .information-strip__all {
