@@ -1889,7 +1889,7 @@ td {
   display: grid;
   column-gap: 3rem;
   row-gap: 0.45rem;
-  grid-template-columns: minmax(160px, auto) minmax(0, 1fr) auto;
+  grid-template-columns: minmax(160px, auto) minmax(0, 1fr);
   margin: 0 auto;
   max-width: var(--max);
   min-height: 54px;
@@ -1917,7 +1917,7 @@ td {
 .information-strip__items {
   align-items: center;
   display: grid;
-  gap: 0.35rem 1rem;
+  gap: 0.35rem 0;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
@@ -1927,8 +1927,25 @@ td {
   display: flex;
   gap: 0.55rem;
   min-width: 0;
+  padding-inline: 1.15rem;
+  position: relative;
   text-decoration: none;
   transition: color 0.2s ease;
+}
+
+.information-strip__items a:first-child {
+  padding-left: 0;
+}
+
+.information-strip__items a + a::before {
+  background: linear-gradient(180deg, transparent, rgba(216, 183, 91, 0.42), transparent);
+  content: "";
+  height: 1.35rem;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
 }
 
 .information-strip__items a:hover {
@@ -1949,14 +1966,6 @@ td {
   line-height: 1.45;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.information-strip__all {
-  color: rgba(216, 183, 91, 0.58);
-  font-size: 0.7rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
   white-space: nowrap;
 }
 
@@ -3338,12 +3347,16 @@ td {
     grid-template-columns: 1fr;
   }
 
-  .information-strip__items span {
-    white-space: normal;
+  .information-strip__items a {
+    padding-inline: 0;
   }
 
-  .information-strip__all {
+  .information-strip__items a + a::before {
     display: none;
+  }
+
+  .information-strip__items span {
+    white-space: normal;
   }
 }
 
@@ -3364,6 +3377,11 @@ td {
 
   .information-strip__items a {
     gap: 0.5rem;
+    padding-inline: 0;
+  }
+
+  .information-strip__items a + a::before {
+    display: none;
   }
 
   .information-strip__items span {
@@ -3371,10 +3389,6 @@ td {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-
-  .information-strip__all {
-    display: none;
   }
 
   .meiden-gallery {
