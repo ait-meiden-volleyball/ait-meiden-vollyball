@@ -481,6 +481,10 @@ h1 {
   max-width: 44rem;
 }
 
+.recruit-hero-title span {
+  display: inline;
+}
+
 .philosophy-title span,
 .philosophy-lead span {
   display: block;
@@ -3409,6 +3413,10 @@ td {
   .meiden-gallery__item {
     flex-basis: 78vw;
     height: 300px;
+  }
+
+  .recruit-hero-title span {
+    display: block;
   }
 
   .instagram-button {
