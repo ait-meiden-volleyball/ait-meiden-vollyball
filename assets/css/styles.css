@@ -1876,6 +1876,80 @@ td {
   display: none;
 }
 
+.information-strip {
+  background:
+    linear-gradient(90deg, rgba(9, 7, 12, 0.98), rgba(22, 18, 27, 0.96) 52%, rgba(10, 7, 13, 0.98)),
+    #0b080e;
+  border-block: 1px solid rgba(216, 183, 91, 0.18);
+  color: white;
+}
+
+.information-strip__inner {
+  align-items: center;
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  margin: 0 auto;
+  max-width: var(--max);
+  min-height: 68px;
+  padding: 0.85rem 1rem;
+}
+
+.information-strip h2 {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.information-strip__items {
+  align-items: center;
+  display: grid;
+  gap: 0.35rem 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.information-strip__items a {
+  align-items: baseline;
+  color: rgba(255, 255, 255, 0.86);
+  display: flex;
+  gap: 0.55rem;
+  min-width: 0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.information-strip__items a:hover {
+  color: white;
+}
+
+.information-strip time {
+  color: var(--gold);
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.information-strip__items span {
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.45;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.information-strip__all {
+  color: rgba(216, 183, 91, 0.58);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
 .quick-apply {
   background: var(--gold);
   color: #140d19;
@@ -3241,7 +3315,51 @@ td {
   }
 }
 
+@media (min-width: 769px) and (max-width: 1099px) {
+  .information-strip__inner {
+    grid-template-columns: auto minmax(0, 1fr);
+    min-height: 78px;
+  }
+
+  .information-strip__items {
+    grid-template-columns: 1fr;
+  }
+
+  .information-strip__items span {
+    white-space: normal;
+  }
+
+  .information-strip__all {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
+  .information-strip__inner {
+    align-items: start;
+    gap: 0.65rem;
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding: 0.8rem 1rem;
+  }
+
+  .information-strip__items {
+    gap: 0.4rem;
+    grid-template-columns: 1fr;
+  }
+
+  .information-strip__items a {
+    gap: 0.65rem;
+  }
+
+  .information-strip__items span {
+    white-space: normal;
+  }
+
+  .information-strip__all {
+    display: none;
+  }
+
   .meiden-gallery {
     padding: 0.8rem 0 1rem;
   }
