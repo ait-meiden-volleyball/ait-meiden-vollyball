@@ -2130,7 +2130,7 @@ td {
 .support-list p,
 .pathway-grid p,
 .why-system p,
-.instagram-compact p {
+.instagram-compact p:not(.eyebrow) {
   color: var(--reading);
   font-size: 0.9rem;
   margin-bottom: 0;
