@@ -1887,21 +1887,31 @@ td {
 .information-strip__inner {
   align-items: center;
   display: grid;
-  gap: 0.9rem;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  column-gap: 3rem;
+  row-gap: 0.45rem;
+  grid-template-columns: minmax(160px, auto) minmax(0, 1fr) auto;
   margin: 0 auto;
   max-width: var(--max);
-  min-height: 68px;
-  padding: 0.85rem 1rem;
+  min-height: 54px;
+  padding: 0.5rem 1rem;
 }
 
 .information-strip h2 {
   color: var(--gold);
+  display: grid;
   font-size: 0.72rem;
   font-weight: 900;
+  gap: 0.12rem;
   letter-spacing: 0.18em;
   margin: 0;
   white-space: nowrap;
+}
+
+.information-strip h2 small {
+  color: rgba(255, 255, 255, 0.54);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
 }
 
 .information-strip__items {
@@ -3317,11 +3327,14 @@ td {
 
 @media (min-width: 769px) and (max-width: 1099px) {
   .information-strip__inner {
-    grid-template-columns: auto minmax(0, 1fr);
-    min-height: 78px;
+    column-gap: 2rem;
+    grid-template-columns: minmax(150px, auto) minmax(0, 1fr);
+    min-height: 0;
+    padding-block: 0.5rem;
   }
 
   .information-strip__items {
+    gap: 0.18rem;
     grid-template-columns: 1fr;
   }
 
@@ -3336,23 +3349,25 @@ td {
 
 @media (max-width: 768px) {
   .information-strip__inner {
-    align-items: start;
-    gap: 0.65rem;
-    grid-template-columns: 1fr;
+    align-items: center;
+    column-gap: 1.1rem;
+    row-gap: 0.12rem;
+    grid-template-columns: minmax(108px, auto) minmax(0, 1fr);
     min-height: 0;
-    padding: 0.8rem 1rem;
+    padding: 0.36rem 1rem;
   }
 
   .information-strip__items {
-    gap: 0.4rem;
+    gap: 0.08rem;
     grid-template-columns: 1fr;
   }
 
   .information-strip__items a {
-    gap: 0.65rem;
+    gap: 0.5rem;
   }
 
   .information-strip__items span {
+    line-height: 1.24;
     white-space: normal;
   }
 
