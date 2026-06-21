@@ -132,27 +132,19 @@ textarea {
 }
 
 .brand__name {
+  color: #fff;
   font-size: clamp(0.78rem, 2.4vw, 0.92rem);
   font-weight: 800;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
   white-space: nowrap;
 }
 
 .brand__sub {
-  color: var(--muted);
+  color: var(--gold);
   font-size: clamp(0.52rem, 1.55vw, 0.66rem);
   white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-  .site-header .brand__name {
-    color: #fff;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
-  }
-
-  .site-header .brand__sub {
-    color: rgba(255, 255, 255, 0.78);
-  }
-}
 
 @media (max-width: 420px) {
   .brand {
