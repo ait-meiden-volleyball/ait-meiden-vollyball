@@ -3994,7 +3994,8 @@ td {
 .diary-hero {
   background:
     linear-gradient(180deg, rgba(50, 16, 79, 0.86), rgba(17, 9, 28, 0.94)),
-    url("../img/diary/okage-yokocho/okage-yokocho-23.jpg") center / cover;
+    url("../img/diary/team-diary-hero.jpg?v=20260622-diary-hero") right 44% / auto 640% no-repeat,
+    linear-gradient(90deg, #13091d 0%, #1d0d2e 48%, #25133f 100%);
   color: #fff;
   padding: clamp(2.4rem, 4.6vw, 3.4rem) 1rem clamp(1.6rem, 3vw, 2.3rem);
 }
@@ -4029,6 +4030,24 @@ td {
 
 .diary-hero__lead span {
   display: block;
+}
+
+@media (max-width: 900px) {
+  .diary-hero {
+    background:
+      linear-gradient(180deg, rgba(50, 16, 79, 0.86), rgba(17, 9, 28, 0.94)),
+      url("../img/diary/team-diary-hero.jpg?v=20260622-diary-hero") right 45% / auto 540% no-repeat,
+      linear-gradient(90deg, #13091d 0%, #1d0d2e 48%, #25133f 100%);
+  }
+}
+
+@media (max-width: 560px) {
+  .diary-hero {
+    background:
+      linear-gradient(180deg, rgba(50, 16, 79, 0.86), rgba(17, 9, 28, 0.94)),
+      url("../img/diary/team-diary-hero.jpg?v=20260622-diary-hero") right 48% / auto 470% no-repeat,
+      linear-gradient(90deg, #13091d 0%, #1d0d2e 48%, #25133f 100%);
+  }
 }
 
 .diary-index {
