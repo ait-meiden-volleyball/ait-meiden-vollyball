@@ -3960,7 +3960,7 @@ td {
     linear-gradient(180deg, rgba(50, 16, 79, 0.86), rgba(17, 9, 28, 0.94)),
     url("../img/diary/okage-yokocho/okage-yokocho-23.jpg") center / cover;
   color: #fff;
-  padding: clamp(6rem, 12vw, 10rem) 1rem clamp(4.5rem, 8vw, 7rem);
+  padding: clamp(3.1rem, 6vw, 4.6rem) 1rem clamp(2.1rem, 4vw, 3rem);
 }
 
 .diary-hero__inner,
@@ -3969,7 +3969,13 @@ td {
   max-width: var(--max);
 }
 
-.diary-hero h1,
+.diary-hero h1 {
+  font-size: clamp(2.25rem, 6vw, 4.8rem);
+  letter-spacing: 0;
+  line-height: 1;
+  margin: 0;
+}
+
 .diary-article__header h1 {
   font-size: clamp(2.7rem, 8vw, 6.8rem);
   letter-spacing: 0;
@@ -3980,24 +3986,25 @@ td {
 .diary-hero p:not(.eyebrow) {
   color: rgba(255, 255, 255, 0.78);
   font-size: clamp(1rem, 2vw, 1.18rem);
-  margin: 1.6rem 0 0;
-  max-width: 42rem;
+  margin: 0.95rem 0 0;
+  max-width: 38rem;
 }
 
 .diary-index {
   background: #fff;
+  padding: clamp(2.2rem, 4.5vw, 3.5rem) 1.05rem clamp(4rem, 7vw, 5.5rem);
 }
 
 .diary-card-grid {
   display: grid;
-  gap: 1.4rem;
+  gap: 1.15rem;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
 }
 
 .diary-card {
   background: #fff;
   border: 1px solid rgba(50, 16, 79, 0.12);
-  box-shadow: 0 24px 70px rgba(26, 16, 39, 0.08);
+  box-shadow: 0 18px 54px rgba(26, 16, 39, 0.07);
   overflow: hidden;
 }
 
@@ -4006,7 +4013,7 @@ td {
 }
 
 .diary-card__photo {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 16 / 10;
   background: #f7f4fb;
   margin: 0;
   overflow: hidden;
@@ -4025,7 +4032,7 @@ td {
 }
 
 .diary-card__body {
-  padding: 1.35rem;
+  padding: 1.05rem 1.15rem 1.2rem;
 }
 
 .diary-card time,
@@ -4039,7 +4046,7 @@ td {
 
 .diary-card h3 {
   color: #17111f;
-  font-size: clamp(1.45rem, 4vw, 2.1rem);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
   line-height: 1.05;
   margin: 0.45rem 0 0.25rem;
 }
