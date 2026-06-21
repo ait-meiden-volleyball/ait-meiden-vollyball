@@ -102,7 +102,7 @@ textarea {
   display: inline-flex;
   flex: 0 1 auto;
   gap: 0.7rem;
-  max-width: min(100%, 18rem);
+  max-width: min(100%, 19.5rem);
   min-width: 0;
   overflow: visible;
 }
@@ -139,14 +139,14 @@ textarea {
 
 .brand__sub {
   color: var(--muted);
-  font-size: clamp(0.56rem, 1.8vw, 0.68rem);
+  font-size: clamp(0.52rem, 1.55vw, 0.66rem);
   white-space: nowrap;
 }
 
 @media (max-width: 420px) {
   .brand {
     gap: 0.52rem;
-    max-width: calc(100vw - 5.6rem);
+    max-width: calc(100vw - 5.35rem);
   }
 
   .brand__mark {
