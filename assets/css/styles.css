@@ -143,6 +143,17 @@ textarea {
   white-space: nowrap;
 }
 
+@media (max-width: 768px) {
+  .site-header .brand__name {
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.28);
+  }
+
+  .site-header .brand__sub {
+    color: rgba(255, 255, 255, 0.78);
+  }
+}
+
 @media (max-width: 420px) {
   .brand {
     gap: 0.52rem;
