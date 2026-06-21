@@ -4021,9 +4021,14 @@ td {
 
 .diary-hero p:not(.eyebrow) {
   color: rgba(255, 255, 255, 0.78);
-  font-size: clamp(1rem, 2vw, 1.18rem);
-  margin: 0.7rem 0 0;
+  font-size: clamp(0.98rem, 1.7vw, 1.14rem);
+  line-height: 1.9;
+  margin: 1.05rem 0 0;
   max-width: 38rem;
+}
+
+.diary-hero__lead span {
+  display: block;
 }
 
 .diary-index {
