@@ -262,6 +262,69 @@ document.querySelectorAll(".meiden-gallery").forEach((gallery) => {
   }
 });
 
+document.querySelectorAll("[data-lightbox-gallery]").forEach((gallery) => {
+  const triggers = Array.from(gallery.querySelectorAll("[data-lightbox-src]"));
+  if (!triggers.length) return;
+
+  let currentIndex = 0;
+  const lightbox = document.createElement("div");
+  lightbox.className = "diary-lightbox";
+  lightbox.setAttribute("role", "dialog");
+  lightbox.setAttribute("aria-modal", "true");
+  lightbox.setAttribute("aria-label", "写真を拡大表示");
+  lightbox.innerHTML = `
+    <button class="diary-lightbox__button diary-lightbox__close" type="button" aria-label="閉じる">×</button>
+    <button class="diary-lightbox__button diary-lightbox__prev" type="button" aria-label="前の写真">‹</button>
+    <img class="diary-lightbox__image" src="" alt="">
+    <button class="diary-lightbox__button diary-lightbox__next" type="button" aria-label="次の写真">›</button>
+  `;
+
+  const image = lightbox.querySelector(".diary-lightbox__image");
+  const closeButton = lightbox.querySelector(".diary-lightbox__close");
+  const prevButton = lightbox.querySelector(".diary-lightbox__prev");
+  const nextButton = lightbox.querySelector(".diary-lightbox__next");
+  document.body.append(lightbox);
+
+  const showImage = (index) => {
+    currentIndex = (index + triggers.length) % triggers.length;
+    const trigger = triggers[currentIndex];
+    image.src = trigger.dataset.lightboxSrc;
+    image.alt = trigger.dataset.lightboxAlt || trigger.querySelector("img")?.alt || "";
+  };
+
+  const openLightbox = (index) => {
+    showImage(index);
+    lightbox.classList.add("is-open");
+    document.documentElement.style.overflow = "hidden";
+    closeButton.focus();
+  };
+
+  const closeLightbox = () => {
+    lightbox.classList.remove("is-open");
+    document.documentElement.style.overflow = "";
+    triggers[currentIndex]?.focus();
+  };
+
+  triggers.forEach((trigger, index) => {
+    trigger.addEventListener("click", () => openLightbox(index));
+  });
+
+  closeButton.addEventListener("click", closeLightbox);
+  prevButton.addEventListener("click", () => showImage(currentIndex - 1));
+  nextButton.addEventListener("click", () => showImage(currentIndex + 1));
+
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (!lightbox.classList.contains("is-open")) return;
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowLeft") showImage(currentIndex - 1);
+    if (event.key === "ArrowRight") showImage(currentIndex + 1);
+  });
+});
+
 window.addEventListener("load", () => {
   if (!window.location.hash) return;
 
