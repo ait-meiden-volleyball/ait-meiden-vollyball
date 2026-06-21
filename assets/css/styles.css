@@ -2006,6 +2006,7 @@ td {
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1.45;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -3385,20 +3386,12 @@ td {
   }
 
   .information-strip__items {
-    gap: 0.18rem;
-    grid-template-columns: 1fr;
+    gap: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .information-strip__items a {
-    padding-inline: 0;
-  }
-
-  .information-strip__items a + a::before {
-    display: none;
-  }
-
-  .information-strip__items span {
-    white-space: normal;
+    min-width: 0;
   }
 }
 
@@ -3413,27 +3406,34 @@ td {
   }
 
   .information-strip__items {
-    gap: 0.08rem;
-    grid-template-columns: 1fr;
+    gap: 0;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .information-strip__items a {
     gap: 0.5rem;
-    padding-inline: 0;
+    min-width: 0;
+    padding-inline: 0.72rem;
+  }
+
+  .information-strip__items a:first-child {
+    padding-left: 0;
   }
 
   .information-strip__items a + a::before {
-    display: none;
+    display: block;
   }
 
   .information-strip__items span {
     line-height: 1.24;
+    min-width: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
   }
 
   .meiden-gallery {
+
     padding: 0.8rem 0 1rem;
   }
 
