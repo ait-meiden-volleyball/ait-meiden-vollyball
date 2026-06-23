@@ -3,3 +3,5 @@ work/
 outputs/
 *.log
 
+.vercel
+node_modules/
