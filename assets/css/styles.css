@@ -1869,11 +1869,15 @@ td {
   background: rgba(15, 8, 25, 0.76);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-left: 2px solid var(--gold);
+  color: inherit;
+  cursor: pointer;
   display: grid;
   gap: 0.18rem 0.55rem;
   grid-template-columns: 42px 1fr;
   min-width: 0;
   padding: 0.7rem;
+  position: relative;
+  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
 }
 
 .hero-point:last-child {
@@ -1907,6 +1911,21 @@ td {
 
 .hero-point__mobile {
   display: none;
+}
+
+.hero-point:focus-visible {
+  outline: 2px solid rgba(216, 183, 91, 0.82);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-point:hover {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(111, 45, 189, 0.12)),
+      rgba(20, 11, 32, 0.86);
+    border-color: rgba(216, 183, 91, 0.48);
+    box-shadow: 0 0 22px rgba(216, 183, 91, 0.13), 0 12px 30px rgba(0, 0, 0, 0.18);
+    transform: translateY(-1px);
+  }
 }
 
 .information-strip {
