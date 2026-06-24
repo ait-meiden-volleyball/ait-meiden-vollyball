@@ -1905,18 +1905,6 @@ td {
   line-height: 1.35;
 }
 
-.hero-point--support {
-  background: linear-gradient(135deg, rgba(185, 139, 44, 0.26), rgba(28, 11, 42, 0.92));
-  border-color: rgba(232, 194, 105, 0.72);
-  box-shadow: 0 0 24px rgba(201, 156, 55, 0.18);
-}
-
-.hero-point--support b {
-  color: #ffe286;
-  font-size: 0.96rem;
-  text-shadow: 0 0 16px rgba(255, 211, 105, 0.3);
-}
-
 .hero-point__mobile {
   display: none;
 }
