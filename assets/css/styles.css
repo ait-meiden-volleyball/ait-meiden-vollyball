@@ -4394,13 +4394,17 @@ td {
 
 @media (max-width: 719px) {
   .site-nav {
+    left: auto;
+    max-width: 360px;
     min-width: 0;
     padding: 1rem 1.2rem 1.8rem;
+    right: 0;
     top: 64px;
-    width: min(85vw, 360px);
+    width: 85vw;
   }
 
   .site-nav a {
+    display: block;
     font-size: 0.9rem;
     padding: 0.98rem 0;
   }
