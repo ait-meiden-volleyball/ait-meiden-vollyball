@@ -4416,7 +4416,7 @@ td {
       linear-gradient(90deg, rgba(7, 3, 12, 0.2), rgba(7, 3, 12, 0.48)),
       rgba(5, 2, 9, 0.18);
     backdrop-filter: brightness(0.84);
-    z-index: 9990;
+    z-index: 90;
   }
 
   .site-nav {
