@@ -4411,9 +4411,22 @@ td {
 }
 
 @media (max-width: 767px) {
+  .menu-backdrop {
+    background:
+      linear-gradient(90deg, rgba(7, 3, 12, 0.2), rgba(7, 3, 12, 0.48)),
+      rgba(5, 2, 9, 0.18);
+    backdrop-filter: brightness(0.84);
+    z-index: 9990;
+  }
+
   .site-nav {
     align-content: start;
+    background:
+      linear-gradient(180deg, rgba(25, 14, 39, 0.97), rgba(11, 6, 18, 0.97)),
+      rgba(17, 9, 28, 0.96);
+    border-left: 1px solid rgba(216, 183, 91, 0.26);
     bottom: auto;
+    box-shadow: -18px 0 52px rgba(0, 0, 0, 0.38);
     display: grid;
     gap: 0;
     height: 100vh;
@@ -4444,7 +4457,11 @@ td {
   }
 
   .site-nav a {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(248, 245, 255, 0.94);
     display: block;
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
     min-width: 0;
     overflow-wrap: normal;
     padding: 1rem 0;
@@ -4452,11 +4469,16 @@ td {
     width: 100%;
   }
 
-  .menu-backdrop {
-    z-index: 9990;
+  .site-nav a[aria-current="page"],
+  .site-nav a:hover,
+  .site-nav a:focus-visible {
+    color: var(--gold);
+    padding-left: 0.12rem;
   }
 
   .menu-button[aria-expanded="true"] {
+    background: rgba(216, 183, 91, 0.05);
+    border-color: rgba(216, 183, 91, 0.32);
     position: fixed;
     right: 1rem;
     top: 0.72rem;
