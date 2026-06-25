@@ -4458,7 +4458,8 @@ td {
 
   .site-nav a {
     border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-    color: #fffdfa;
+    -webkit-text-fill-color: #fff;
+    color: #fff !important;
     display: block;
     font-size: 0.9rem;
     letter-spacing: 0.04em;
@@ -4472,7 +4473,8 @@ td {
   .site-nav a[aria-current="page"],
   .site-nav a:hover,
   .site-nav a:focus-visible {
-    color: var(--gold);
+    -webkit-text-fill-color: var(--gold);
+    color: var(--gold) !important;
     padding-left: 0.12rem;
   }
 
