@@ -4602,6 +4602,54 @@ td {
   width: 100%;
 }
 
+.next-match-doc-section {
+  background:
+    linear-gradient(180deg, rgba(111, 45, 189, 0.08), transparent 18rem),
+    #09060e;
+}
+
+.next-match-doc-frame {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
+    var(--panel);
+  border: 1px solid rgba(216, 183, 91, 0.22);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: block;
+  margin-inline: auto;
+  max-width: 1080px;
+  overflow: auto;
+  padding: clamp(0.55rem, 2vw, 1rem);
+}
+
+.next-match-doc-frame object {
+  background: #fff;
+  border: 0;
+  display: block;
+  height: min(76vh, 920px);
+  min-height: 620px;
+  width: 100%;
+}
+
+.next-match-doc-frame img {
+  background: #fff;
+  display: block;
+  height: auto;
+  margin-inline: auto;
+  max-width: none;
+  min-width: min(760px, 100%);
+  width: 100%;
+}
+
+.next-match-doc-frame--image {
+  cursor: zoom-in;
+}
+
+.next-match-doc-section .section-action {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
 @media (min-width: 720px) {
   .next-match-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -4620,5 +4668,18 @@ td {
   .next-match-card__icon {
     height: 4.7rem;
     width: 4.7rem;
+  }
+
+  .next-match-doc-frame {
+    margin-inline: -0.6rem;
+  }
+
+  .next-match-doc-frame object {
+    height: 72vh;
+    min-height: 520px;
+  }
+
+  .next-match-doc-frame img {
+    min-width: 760px;
   }
 }
