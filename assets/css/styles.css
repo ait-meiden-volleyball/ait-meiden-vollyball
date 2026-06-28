@@ -4783,3 +4783,32 @@ td {
     min-width: 760px;
   }
 }
+
+/* Final mobile-only override: keep the hero NEXT MATCH card compact and clear of the eyebrow. */
+@media (max-width: 767px) {
+  .hero--recruit .hero-next-match {
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+    gap: 0.42rem;
+    min-height: 50px;
+    padding: 0.44rem 0.56rem 0.44rem 0.62rem;
+    right: 0.95rem;
+    top: 0.25rem;
+    width: 174px;
+    z-index: 4;
+  }
+
+  .hero--recruit .hero-next-match strong {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+  }
+
+  .hero--recruit .hero-next-match small {
+    font-size: 0.58rem;
+    line-height: 1.25;
+    margin-top: 0.18rem;
+  }
+
+  .hero--recruit .hero-next-match i {
+    font-size: 1rem;
+  }
+}
