@@ -1863,7 +1863,7 @@ td {
   color: #fff;
   display: inline-flex;
   gap: 0.72rem;
-  justify-content: space-between;
+  justify-content: center;
   min-height: 68px;
   padding: 0.72rem 0.78rem 0.72rem 0.9rem;
   position: absolute;
@@ -1872,6 +1872,11 @@ td {
   width: min(54vw, 13.25rem);
   z-index: 3;
   transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
+}
+
+.hero-next-match span {
+  text-align: center;
+  width: 100%;
 }
 
 .hero-next-match strong {
@@ -1892,16 +1897,6 @@ td {
   margin-top: 0.3rem;
 }
 
-.hero-next-match i {
-  color: var(--gold);
-  flex: 0 0 auto;
-  font-size: 1.08rem;
-  font-style: normal;
-  font-weight: 900;
-  line-height: 1;
-  transition: transform 220ms ease;
-}
-
 .hero-next-match:focus-visible {
   outline: 2px solid rgba(216, 183, 91, 0.82);
   outline-offset: 3px;
@@ -1915,10 +1910,6 @@ td {
     border-color: rgba(216, 183, 91, 0.72);
     box-shadow: 0 20px 42px rgba(0, 0, 0, 0.28), 0 0 22px rgba(216, 183, 91, 0.12);
     transform: translateY(-1px);
-  }
-
-  .hero-next-match:hover i {
-    transform: translateX(4px);
   }
 }
 
@@ -1937,10 +1928,6 @@ td {
 
   .hero-next-match small {
     font-size: 0.82rem;
-  }
-
-  .hero-next-match i {
-    font-size: 1.28rem;
   }
 }
 
@@ -4806,9 +4793,5 @@ td {
     font-size: 0.58rem;
     line-height: 1.25;
     margin-top: 0.18rem;
-  }
-
-  .hero--recruit .hero-next-match i {
-    font-size: 1rem;
   }
 }
