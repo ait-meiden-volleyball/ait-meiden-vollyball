@@ -1939,9 +1939,14 @@ td {
     border-color: rgba(216, 183, 91, 0.34);
     box-shadow: 0 18px 38px rgba(0, 0, 0, 0.18), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
     min-height: 82px;
-    right: -1rem;
-    top: 3.9rem;
-    width: 17.25rem;
+    right: -3.5rem;
+    top: 2.65rem;
+    width: 15.75rem;
+  }
+
+  .hero-next-match small {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
   }
 }
 
