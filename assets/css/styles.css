@@ -1933,10 +1933,26 @@ td {
 
 @media (min-width: 1100px) {
   .hero-next-match {
-    min-height: 86px;
-    right: 2rem;
-    top: 5.35rem;
-    width: 19.5rem;
+    background:
+      linear-gradient(135deg, rgba(67, 28, 101, 0.84) 0%, rgba(31, 13, 48, 0.8) 46%, rgba(8, 5, 14, 0.84) 100%),
+      rgba(18, 8, 29, 0.8);
+    border-color: rgba(216, 183, 91, 0.34);
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.18), 0 1px 0 rgba(255, 255, 255, 0.04) inset;
+    min-height: 82px;
+    right: -1rem;
+    top: 3.9rem;
+    width: 17.25rem;
+  }
+}
+
+@media (min-width: 1100px) and (hover: hover) and (pointer: fine) {
+  .hero-next-match:hover {
+    background:
+      linear-gradient(135deg, rgba(78, 34, 116, 0.9) 0%, rgba(36, 16, 55, 0.86) 46%, rgba(12, 7, 20, 0.88) 100%),
+      rgba(22, 10, 35, 0.86);
+    border-color: rgba(216, 183, 91, 0.48);
+    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.22), 0 0 18px rgba(216, 183, 91, 0.08);
+    transform: translateY(-2px);
   }
 }
 
