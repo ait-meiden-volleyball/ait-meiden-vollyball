@@ -1280,7 +1280,7 @@ h1 {
 .profile:nth-child(2) .profile__photo {
   background:
     linear-gradient(160deg, rgba(216, 183, 91, 0.08), rgba(111, 45, 189, 0.13)),
-    url("../img/photos/koga-defense-coach.jpg") 50% 18% / cover;
+    url("../img/photos/koga-defense-coach.jpg?v=20260707") 50% 0% / cover;
 }
 
 .profile:nth-child(3) .profile__photo {
