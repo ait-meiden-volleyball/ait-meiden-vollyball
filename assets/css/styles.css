@@ -377,6 +377,10 @@ textarea {
   right: 0;
 }
 
+.hero-mobile-photo {
+  display: none;
+}
+
 .hero__inner {
   display: grid;
   margin: 0 auto;
@@ -3696,14 +3700,18 @@ td {
   }
 
   .hero--recruit::before {
+    display: none;
+  }
+
+  .hero-mobile-photo {
     background:
       linear-gradient(180deg, rgba(7, 3, 12, 0.12), rgba(13, 8, 22, 0.58) 88%),
       linear-gradient(90deg, rgba(8, 3, 14, 0.9), rgba(38, 13, 61, 0.38), rgba(8, 3, 14, 0.12)),
       url("../img/photos/hero-arena-haruko.jpg") center var(--hero-mobile-bg-y, 58%) / cover;
     display: block;
     height: 100svh;
-    inset: auto;
     margin-bottom: -100svh;
+    pointer-events: none;
     position: sticky;
     top: 0;
     will-change: background-position;

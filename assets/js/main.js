@@ -166,7 +166,7 @@ if (recruitHero) {
     const rect = recruitHero.getBoundingClientRect();
     const travel = 220;
     const progress = Math.min(Math.max(-rect.top / travel, 0), 1);
-    const backgroundY = 58 + progress * 24;
+    const backgroundY = 58 + progress * 30;
 
     recruitHero.style.setProperty("--hero-mobile-bg-y", `${backgroundY.toFixed(2)}%`);
   };
