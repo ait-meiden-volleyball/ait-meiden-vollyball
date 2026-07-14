@@ -1,7 +1,5 @@
 const menuButton = document.querySelector("[data-menu-button]");
 const nav = document.querySelector("[data-site-nav]");
-const heroScrollCopy = document.querySelector("[data-hero-scroll-copy]");
-const heroScrollSection = heroScrollCopy?.closest(".hero");
 
 document.querySelectorAll('a[href*="results.html"]').forEach((link) => {
   const url = new URL(link.href, window.location.href);
@@ -149,60 +147,6 @@ if (menuButton && nav) {
     menuDebug(`debug ready width=${window.innerWidth} visual=${window.visualViewport?.width || "-"}`);
   }
 
-}
-
-if (heroScrollCopy && heroScrollSection) {
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let ticking = false;
-
-  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-  const smoothstep = (value) => value * value * (3 - 2 * value);
-
-  const updateHeroScrollCopy = () => {
-    ticking = false;
-
-    if (reduceMotion.matches || window.innerWidth < 768) {
-      heroScrollCopy.classList.remove("is-visible");
-      heroScrollCopy.style.setProperty("--hero-scroll-copy-opacity", "0");
-      heroScrollCopy.style.setProperty("--hero-scroll-copy-visibility", "hidden");
-      return;
-    }
-
-    const rect = heroScrollSection.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
-    const progress = clamp(-rect.top / viewportHeight, 0, 1);
-    const start = 0.18;
-    const peak = 0.32;
-    const holdEnd = 0.48;
-    const end = 0.72;
-
-    let opacity = 0;
-    if (progress > start && progress <= peak) {
-      opacity = smoothstep((progress - start) / (peak - start));
-    } else if (progress > peak && progress <= holdEnd) {
-      opacity = 1;
-    } else if (progress > holdEnd && progress < end) {
-      opacity = 1 - smoothstep((progress - holdEnd) / (end - holdEnd));
-    }
-
-    const isVisible = opacity > 0.02 && rect.bottom > 0 && rect.top < viewportHeight;
-    const y = 18 - opacity * 18;
-    heroScrollCopy.classList.toggle("is-visible", isVisible);
-    heroScrollCopy.style.setProperty("--hero-scroll-copy-opacity", opacity.toFixed(3));
-    heroScrollCopy.style.setProperty("--hero-scroll-copy-y", `${y.toFixed(2)}px`);
-    heroScrollCopy.style.setProperty("--hero-scroll-copy-visibility", isVisible ? "visible" : "hidden");
-  };
-
-  const requestHeroScrollCopyUpdate = () => {
-    if (ticking) return;
-    ticking = true;
-    window.requestAnimationFrame(updateHeroScrollCopy);
-  };
-
-  window.addEventListener("scroll", requestHeroScrollCopyUpdate, { passive: true });
-  window.addEventListener("resize", requestHeroScrollCopyUpdate);
-  reduceMotion.addEventListener?.("change", requestHeroScrollCopyUpdate);
-  requestHeroScrollCopyUpdate();
 }
 
 document.querySelectorAll(".faq__button").forEach((button) => {
