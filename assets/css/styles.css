@@ -525,11 +525,32 @@ h1 {
   transform: translate3d(0, 0, 0);
 }
 
+.photo-reveal-ready [data-photo-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 2.35rem, 0);
+  transition:
+    opacity 880ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 980ms cubic-bezier(0.16, 1, 0.3, 1);
+  filter: saturate(0.9) brightness(0.86);
+  will-change: opacity, transform, filter;
+}
+
+.photo-reveal-ready [data-photo-reveal].is-photo-visible,
+[data-photo-reveal].is-photo-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: saturate(1) brightness(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .title-reveal-ready [data-title-reveal],
-  [data-title-reveal] {
+  [data-title-reveal],
+  .photo-reveal-ready [data-photo-reveal],
+  [data-photo-reveal] {
     opacity: 1;
     transform: none;
+    filter: none;
     transition: none;
   }
 }

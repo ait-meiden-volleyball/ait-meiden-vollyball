@@ -212,6 +212,34 @@ if (titleRevealTargets.length) {
   }
 }
 
+const photoRevealTargets = document.querySelectorAll("[data-photo-reveal]");
+
+if (photoRevealTargets.length) {
+  const reducePhotoMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (reducePhotoMotion.matches || !("IntersectionObserver" in window)) {
+    photoRevealTargets.forEach((target) => target.classList.add("is-photo-visible"));
+  } else {
+    document.documentElement.classList.add("photo-reveal-ready");
+
+    const photoRevealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-photo-visible");
+          photoRevealObserver.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px -14% 0px",
+        threshold: 0.18,
+      }
+    );
+
+    photoRevealTargets.forEach((target) => photoRevealObserver.observe(target));
+  }
+}
+
 document.querySelectorAll(".meiden-gallery").forEach((gallery) => {
   const viewport = gallery.querySelector(".meiden-gallery__viewport");
   const rail = gallery.querySelector(".meiden-gallery__rail");
