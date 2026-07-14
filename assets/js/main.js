@@ -161,7 +161,7 @@ if (heroScrollCopy && heroScrollSection) {
   const updateHeroScrollCopy = () => {
     ticking = false;
 
-    if (reduceMotion.matches) {
+    if (reduceMotion.matches || window.innerWidth < 768) {
       heroScrollCopy.classList.remove("is-visible");
       heroScrollCopy.style.setProperty("--hero-scroll-copy-opacity", "0");
       heroScrollCopy.style.setProperty("--hero-scroll-copy-visibility", "hidden");
@@ -171,11 +171,10 @@ if (heroScrollCopy && heroScrollSection) {
     const rect = heroScrollSection.getBoundingClientRect();
     const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
     const progress = clamp(-rect.top / viewportHeight, 0, 1);
-    const isSmallScreen = window.innerWidth < 720;
-    const start = isSmallScreen ? 0.2 : 0.18;
-    const peak = isSmallScreen ? 0.3 : 0.32;
-    const holdEnd = isSmallScreen ? 0.43 : 0.48;
-    const end = isSmallScreen ? 0.64 : 0.72;
+    const start = 0.18;
+    const peak = 0.32;
+    const holdEnd = 0.48;
+    const end = 0.72;
 
     let opacity = 0;
     if (progress > start && progress <= peak) {

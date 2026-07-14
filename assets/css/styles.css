@@ -3570,12 +3570,13 @@ td {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .hero-scroll-copy {
-    font-size: clamp(2rem, 10vw, 3.6rem);
-    width: min(84vw, 420px);
+    display: none;
   }
+}
 
+@media (max-width: 768px) {
   .information-strip__inner {
     align-items: center;
     column-gap: 0.85rem;
