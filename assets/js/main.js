@@ -222,17 +222,30 @@ if (photoRevealTargets.length) {
   } else {
     document.documentElement.classList.add("photo-reveal-ready");
 
+    const isCompletelyOutsideViewport = (element) => {
+      const rect = element.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+
+      return rect.bottom <= 0 || rect.top >= viewportHeight || rect.right <= 0 || rect.left >= viewportWidth;
+    };
+
     const photoRevealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-photo-visible");
-          photoRevealObserver.unobserve(entry.target);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-photo-visible");
+            return;
+          }
+
+          if (isCompletelyOutsideViewport(entry.target)) {
+            entry.target.classList.remove("is-photo-visible");
+          }
         });
       },
       {
-        rootMargin: window.matchMedia("(min-width: 768px)").matches ? "0px 0px -22% 0px" : "0px 0px -14% 0px",
-        threshold: 0.18,
+        rootMargin: "0px",
+        threshold: 0,
       }
     );
 
