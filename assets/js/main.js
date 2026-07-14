@@ -231,7 +231,7 @@ if (photoRevealTargets.length) {
         });
       },
       {
-        rootMargin: "0px 0px -14% 0px",
+        rootMargin: window.matchMedia("(min-width: 768px)").matches ? "0px 0px -22% 0px" : "0px 0px -14% 0px",
         threshold: 0.18,
       }
     );

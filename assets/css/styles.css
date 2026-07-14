@@ -543,6 +543,15 @@ h1 {
   filter: saturate(1) brightness(1);
 }
 
+@media (min-width: 768px) {
+  .photo-reveal-ready [data-photo-reveal] {
+    transition:
+      opacity 1300ms cubic-bezier(0.22, 1, 0.36, 1) 180ms,
+      transform 1450ms cubic-bezier(0.16, 1, 0.3, 1) 180ms,
+      filter 1450ms cubic-bezier(0.16, 1, 0.3, 1) 180ms;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .title-reveal-ready [data-title-reveal],
   [data-title-reveal],
