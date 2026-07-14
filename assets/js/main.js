@@ -175,6 +175,35 @@ document.querySelectorAll("[data-application-url]").forEach((link) => {
   link.removeAttribute("tabindex");
 });
 
+const titleRevealTargets = document.querySelectorAll("[data-title-reveal]");
+
+if (titleRevealTargets.length) {
+  const reduceTitleMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (reduceTitleMotion.matches || !("IntersectionObserver" in window)) {
+    titleRevealTargets.forEach((target) => target.classList.add("is-title-visible"));
+  } else {
+    document.documentElement.classList.add("title-reveal-ready");
+
+    const titleRevealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-title-visible");
+          titleRevealObserver.unobserve(entry.target);
+        });
+      },
+      {
+        rootMargin: "0px 0px -16% 0px",
+        threshold: 0.26,
+      }
+    );
+
+    titleRevealTargets.forEach((target) => titleRevealObserver.observe(target));
+  }
+}
+
 document.querySelectorAll(".meiden-gallery").forEach((gallery) => {
   const viewport = gallery.querySelector(".meiden-gallery__viewport");
   const rail = gallery.querySelector(".meiden-gallery__rail");

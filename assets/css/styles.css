@@ -508,6 +508,32 @@ h1 {
   text-wrap: balance;
 }
 
+.title-reveal-ready [data-title-reveal] {
+  opacity: 0;
+  transform: translate3d(-2.35rem, 0, 0);
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1100ms cubic-bezier(0.16, 1, 0.3, 1),
+    text-shadow 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.title-reveal-ready [data-title-reveal].is-title-visible,
+[data-title-reveal].is-title-visible {
+  opacity: 1;
+  text-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-reveal-ready [data-title-reveal],
+  [data-title-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
 .section__lead,
 .page-hero__lead {
   color: var(--reading);
