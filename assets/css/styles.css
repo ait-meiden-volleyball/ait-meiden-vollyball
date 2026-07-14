@@ -2952,6 +2952,16 @@ td {
   background: linear-gradient(180deg, rgba(111, 45, 189, 0.13), transparent 20rem), #120b1c;
 }
 
+@media (max-width: 767px) {
+  .partners-section .sponsor-hero-photo {
+    margin-inline: -0.55rem;
+  }
+
+  .partners-section .sponsor-hero-photo img {
+    aspect-ratio: 4 / 3;
+  }
+}
+
 .partner-count {
   align-items: center;
   display: flex;
