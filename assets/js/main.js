@@ -188,15 +188,13 @@ if (titleRevealTargets.length) {
     const titleRevealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-
-          entry.target.classList.add("is-title-visible");
-          titleRevealObserver.unobserve(entry.target);
+          const isAboveViewport = entry.boundingClientRect.top < 0;
+          entry.target.classList.toggle("is-title-visible", entry.isIntersecting || isAboveViewport);
         });
       },
       {
-        rootMargin: "0px 0px -16% 0px",
-        threshold: 0.26,
+        rootMargin: "-12% 0px -26% 0px",
+        threshold: 0.18,
       }
     );
 
