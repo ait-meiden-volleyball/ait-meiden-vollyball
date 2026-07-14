@@ -164,8 +164,7 @@ if (recruitHero) {
     }
 
     const rect = recruitHero.getBoundingClientRect();
-    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-    const travel = Math.min(viewportHeight * 0.42, 260);
+    const travel = 220;
     const progress = Math.min(Math.max(-rect.top / travel, 0), 1);
     const backgroundY = 58 + progress * 24;
 
