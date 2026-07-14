@@ -149,6 +149,40 @@ if (menuButton && nav) {
 
 }
 
+const recruitHero = document.querySelector(".hero--recruit");
+
+if (recruitHero) {
+  const mobileHeroMedia = window.matchMedia("(max-width: 719px)");
+  let heroBackgroundFrame = null;
+
+  const updateRecruitHeroBackground = () => {
+    heroBackgroundFrame = null;
+
+    if (!mobileHeroMedia.matches) {
+      recruitHero.style.removeProperty("--hero-mobile-bg-y");
+      return;
+    }
+
+    const rect = recruitHero.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const travel = Math.min(viewportHeight * 0.42, 260);
+    const progress = Math.min(Math.max(-rect.top / travel, 0), 1);
+    const backgroundY = 58 + progress * 24;
+
+    recruitHero.style.setProperty("--hero-mobile-bg-y", `${backgroundY.toFixed(2)}%`);
+  };
+
+  const requestRecruitHeroBackgroundUpdate = () => {
+    if (heroBackgroundFrame) return;
+    heroBackgroundFrame = window.requestAnimationFrame(updateRecruitHeroBackground);
+  };
+
+  updateRecruitHeroBackground();
+  window.addEventListener("scroll", requestRecruitHeroBackgroundUpdate, { passive: true });
+  window.addEventListener("resize", requestRecruitHeroBackgroundUpdate);
+  mobileHeroMedia.addEventListener?.("change", requestRecruitHeroBackgroundUpdate);
+}
+
 document.querySelectorAll(".faq__button").forEach((button) => {
   button.addEventListener("click", () => {
     const item = button.closest(".faq__item");
