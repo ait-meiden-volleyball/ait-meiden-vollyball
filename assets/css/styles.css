@@ -377,10 +377,6 @@ textarea {
   right: 0;
 }
 
-.hero-mobile-photo {
-  display: none;
-}
-
 .hero__inner {
   display: grid;
   margin: 0 auto;
@@ -3699,26 +3695,10 @@ td {
   }
 
   .hero--recruit::before {
-    display: none;
-  }
-
-  .hero-mobile-photo {
     background:
       linear-gradient(180deg, rgba(7, 3, 12, 0.12), rgba(13, 8, 22, 0.58) 88%),
       linear-gradient(90deg, rgba(8, 3, 14, 0.9), rgba(38, 13, 61, 0.38), rgba(8, 3, 14, 0.12)),
       url("../img/photos/hero-arena-haruko.jpg") center 58% / cover;
-    display: block;
-    inset: -6% 0 -6%;
-    pointer-events: none;
-    position: absolute;
-    transform: translate3d(0, var(--hero-mobile-photo-shift, 0px), 0);
-    will-change: transform;
-    z-index: 0;
-  }
-
-  .hero__inner--recruit {
-    position: relative;
-    z-index: 1;
   }
 
   .hero-points {
@@ -4926,5 +4906,177 @@ td {
     font-size: 0.58rem;
     line-height: 1.25;
     margin-top: 0.18rem;
+  }
+}
+
+.denbear-hero {
+  background:
+    radial-gradient(circle at 76% 22%, rgba(126, 78, 169, 0.28), transparent 34rem),
+    linear-gradient(135deg, rgba(15, 7, 24, 0.96), rgba(48, 17, 74, 0.84) 48%, rgba(7, 3, 12, 0.98));
+  border-bottom: 1px solid rgba(216, 183, 91, 0.22);
+  overflow: hidden;
+  position: relative;
+}
+
+.denbear-hero::before {
+  background:
+    linear-gradient(90deg, rgba(216, 183, 91, 0.22), transparent 30%),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 96px);
+  bottom: 0;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.denbear-hero__inner {
+  align-items: center;
+  display: grid;
+  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 0.92fr) minmax(260px, 0.72fr);
+  margin: 0 auto;
+  max-width: var(--max);
+  min-height: min(760px, 92svh);
+  padding: clamp(6.5rem, 12vw, 8.5rem) 1.05rem clamp(4rem, 8vw, 6rem);
+  position: relative;
+  z-index: 1;
+}
+
+.denbear-hero__copy h1 {
+  color: #fff;
+  font-size: clamp(3.6rem, 10vw, 7.6rem);
+  letter-spacing: 0.02em;
+  line-height: 0.9;
+  margin: 0 0 1.35rem;
+  text-shadow: 0 28px 72px rgba(0, 0, 0, 0.38);
+}
+
+.denbear-hero__lead {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: clamp(1.05rem, 2.5vw, 1.55rem);
+  font-weight: 800;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.denbear-hero__visual {
+  align-self: center;
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(216, 183, 91, 0.2), transparent 50%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(216, 183, 91, 0.24);
+  box-shadow: 0 34px 80px rgba(0, 0, 0, 0.38);
+  display: grid;
+  margin: 0;
+  overflow: hidden;
+  place-items: center;
+}
+
+.denbear-hero__visual img {
+  display: block;
+  height: auto;
+  width: min(92%, 560px);
+}
+
+.denbear-story__grid {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: minmax(0, 1.08fr) minmax(240px, 0.62fr);
+}
+
+.denbear-story__body {
+  color: rgba(255, 255, 255, 0.84);
+  font-size: clamp(1.02rem, 2vw, 1.28rem);
+  font-weight: 700;
+  line-height: 2.05;
+}
+
+.denbear-story__body p {
+  margin-bottom: 1.4rem;
+}
+
+.denbear-skill {
+  background:
+    linear-gradient(145deg, rgba(48, 17, 74, 0.74), rgba(12, 7, 19, 0.94)),
+    rgba(17, 8, 28, 0.9);
+  border: 1px solid rgba(216, 183, 91, 0.24);
+  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.28);
+  display: grid;
+  min-height: 260px;
+  padding: clamp(1.3rem, 4vw, 2.2rem);
+}
+
+.denbear-skill h2 {
+  color: #fff;
+  margin-bottom: 1.2rem;
+}
+
+.denbear-skill strong {
+  align-self: end;
+  color: var(--gold);
+  font-size: clamp(2.1rem, 6vw, 4.3rem);
+  line-height: 1;
+}
+
+.denbear-gallery__grid {
+  margin-top: 2rem;
+}
+
+.denbear-coming-soon {
+  min-height: 300px;
+}
+
+.denbear-coming-soon__inner {
+  align-content: center;
+  background:
+    linear-gradient(145deg, rgba(48, 17, 74, 0.58), rgba(9, 5, 16, 0.92));
+  border: 1px solid rgba(216, 183, 91, 0.2);
+  display: grid;
+  gap: 0.75rem;
+  height: 100%;
+  padding: 2rem;
+}
+
+.denbear-coming-soon span {
+  color: var(--gold);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.denbear-coming-soon h3 {
+  color: #fff;
+  font-size: clamp(1.45rem, 4vw, 2.35rem);
+  margin: 0;
+}
+
+.denbear-coming-soon p {
+  color: var(--muted);
+  font-weight: 700;
+  margin: 0;
+}
+
+@media (max-width: 719px) {
+  .denbear-hero__inner,
+  .denbear-story__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .denbear-hero__inner {
+    min-height: auto;
+    padding: 6rem 1.05rem 3.25rem;
+  }
+
+  .denbear-hero__visual {
+    margin-inline: auto;
+    max-width: 320px;
+    width: 100%;
+  }
+
+  .denbear-story__body {
+    font-size: 1rem;
+    line-height: 1.95;
   }
 }
