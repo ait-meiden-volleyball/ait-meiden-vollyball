@@ -159,16 +159,16 @@ if (recruitHero) {
     heroBackgroundFrame = null;
 
     if (!mobileHeroMedia.matches) {
-      recruitHero.style.removeProperty("--hero-mobile-bg-y");
+      recruitHero.style.removeProperty("--hero-mobile-photo-shift");
       return;
     }
 
     const rect = recruitHero.getBoundingClientRect();
-    const travel = 220;
+    const travel = Math.min((window.innerHeight || document.documentElement.clientHeight) * 0.55, 360);
     const progress = Math.min(Math.max(-rect.top / travel, 0), 1);
-    const backgroundY = 58 + progress * 30;
+    const photoShift = -28 * progress;
 
-    recruitHero.style.setProperty("--hero-mobile-bg-y", `${backgroundY.toFixed(2)}%`);
+    recruitHero.style.setProperty("--hero-mobile-photo-shift", `${photoShift.toFixed(2)}px`);
   };
 
   const requestRecruitHeroBackgroundUpdate = () => {

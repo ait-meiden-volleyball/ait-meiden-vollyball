@@ -3695,8 +3695,7 @@ td {
   }
 
   .hero--recruit {
-    min-height: calc(100svh + 220px);
-    overflow: clip;
+    overflow: hidden;
   }
 
   .hero--recruit::before {
@@ -3707,21 +3706,18 @@ td {
     background:
       linear-gradient(180deg, rgba(7, 3, 12, 0.12), rgba(13, 8, 22, 0.58) 88%),
       linear-gradient(90deg, rgba(8, 3, 14, 0.9), rgba(38, 13, 61, 0.38), rgba(8, 3, 14, 0.12)),
-      url("../img/photos/hero-arena-haruko.jpg") center var(--hero-mobile-bg-y, 58%) / cover;
+      url("../img/photos/hero-arena-haruko.jpg") center 58% / cover;
     display: block;
-    height: 100svh;
-    margin-bottom: -100svh;
+    inset: -6% 0 -6%;
     pointer-events: none;
-    position: sticky;
-    top: 0;
-    will-change: background-position;
+    position: absolute;
+    transform: translate3d(0, var(--hero-mobile-photo-shift, 0px), 0);
+    will-change: transform;
     z-index: 0;
   }
 
   .hero__inner--recruit {
-    min-height: 100svh;
-    position: sticky;
-    top: 0;
+    position: relative;
     z-index: 1;
   }
 
