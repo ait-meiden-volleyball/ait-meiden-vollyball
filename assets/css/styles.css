@@ -4946,10 +4946,18 @@ td {
 .denbear-hero__copy h1 {
   color: #fff;
   font-size: clamp(3.6rem, 10vw, 7.6rem);
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   line-height: 0.9;
-  margin: 0 0 1.35rem;
+  margin: 0 0 0.65rem;
   text-shadow: 0 28px 72px rgba(0, 0, 0, 0.38);
+}
+
+.denbear-hero__en {
+  color: var(--gold);
+  font-size: clamp(0.82rem, 1.7vw, 1.08rem);
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  margin: 0 0 1.35rem;
 }
 
 .denbear-hero__lead {
@@ -4981,9 +4989,7 @@ td {
 }
 
 .denbear-story__grid {
-  display: grid;
-  gap: clamp(1.5rem, 4vw, 3rem);
-  grid-template-columns: minmax(0, 1.08fr) minmax(240px, 0.62fr);
+  max-width: 920px;
 }
 
 .denbear-story__body {
@@ -4997,70 +5003,52 @@ td {
   margin-bottom: 1.4rem;
 }
 
-.denbear-skill {
-  background:
-    linear-gradient(145deg, rgba(48, 17, 74, 0.74), rgba(12, 7, 19, 0.94)),
-    rgba(17, 8, 28, 0.9);
-  border: 1px solid rgba(216, 183, 91, 0.24);
-  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.28);
-  display: grid;
-  min-height: 260px;
-  padding: clamp(1.3rem, 4vw, 2.2rem);
-}
-
-.denbear-skill h2 {
-  color: #fff;
-  margin-bottom: 1.2rem;
-}
-
-.denbear-skill strong {
-  align-self: end;
+.denbear-story__label {
   color: var(--gold);
-  font-size: clamp(2.1rem, 6vw, 4.3rem);
-  line-height: 1;
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  margin-bottom: 0.25rem;
 }
 
 .denbear-gallery__grid {
+  display: grid;
+  gap: clamp(0.9rem, 2vw, 1.25rem);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-top: 2rem;
 }
 
-.denbear-coming-soon {
-  min-height: 300px;
-}
-
-.denbear-coming-soon__inner {
-  align-content: center;
+.denbear-gallery-card {
+  aspect-ratio: 1;
   background:
-    linear-gradient(145deg, rgba(48, 17, 74, 0.58), rgba(9, 5, 16, 0.92));
+    linear-gradient(145deg, rgba(48, 17, 74, 0.42), rgba(9, 5, 16, 0.92));
   border: 1px solid rgba(216, 183, 91, 0.2);
-  display: grid;
-  gap: 0.75rem;
+  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.24);
+  margin: 0;
+  overflow: hidden;
+}
+
+.denbear-gallery-card img {
+  display: block;
   height: 100%;
-  padding: 2rem;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+  width: 100%;
 }
 
-.denbear-coming-soon span {
-  color: var(--gold);
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.16em;
+.denbear-gallery-card:hover img {
+  transform: scale(1.035);
 }
 
-.denbear-coming-soon h3 {
-  color: #fff;
-  font-size: clamp(1.45rem, 4vw, 2.35rem);
-  margin: 0;
-}
-
-.denbear-coming-soon p {
-  color: var(--muted);
-  font-weight: 700;
-  margin: 0;
+@media (max-width: 1023px) {
+  .denbear-gallery__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 719px) {
-  .denbear-hero__inner,
-  .denbear-story__grid {
+  .denbear-hero__inner {
     grid-template-columns: 1fr;
   }
 
@@ -5078,5 +5066,9 @@ td {
   .denbear-story__body {
     font-size: 1rem;
     line-height: 1.95;
+  }
+
+  .denbear-gallery__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
