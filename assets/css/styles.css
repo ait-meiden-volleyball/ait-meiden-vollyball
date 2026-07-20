@@ -3893,6 +3893,10 @@ td {
   object-position: center center;
 }
 
+.result-feature--chubu img {
+  object-position: center 62%;
+}
+
 .result-feature__content {
   display: flex;
   flex-direction: column;
