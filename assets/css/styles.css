@@ -3991,6 +3991,18 @@ td {
   margin-top: 0.4rem;
 }
 
+.result-feature--kyoto-interhigh .result-feature__honor {
+  margin-top: 0.9rem;
+}
+
+.result-feature--kyoto-interhigh .result-feature__honor strong {
+  font-size: clamp(2rem, 8vw, 3rem);
+}
+
+.result-feature--kyoto-interhigh .result-feature__honor span {
+  margin-top: 0.25rem;
+}
+
 .result-feature__matches {
   list-style: none;
   margin: 1.25rem 0 0;
@@ -4171,6 +4183,10 @@ td {
 
   .result-feature__honor strong {
     font-size: clamp(4rem, 7vw, 6rem);
+  }
+
+  .result-feature--kyoto-interhigh .result-feature__honor strong {
+    font-size: clamp(2.6rem, 3.5vw, 3.5rem);
   }
 
   .results-timeline {
