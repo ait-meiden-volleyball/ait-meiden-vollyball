@@ -4074,6 +4074,12 @@ td {
   margin: 0.7rem 0 0;
 }
 
+@media (max-width: 719px) {
+  .results-timeline h3.results-timeline__title--mobile-compact {
+    font-size: 1rem;
+  }
+}
+
 .results-timeline__item--latest article {
   background: linear-gradient(135deg, rgba(101, 58, 9, 0.42), rgba(45, 19, 60, 0.96) 56%, rgba(15, 11, 20, 0.98));
   border-color: rgba(245, 195, 66, 0.62);
