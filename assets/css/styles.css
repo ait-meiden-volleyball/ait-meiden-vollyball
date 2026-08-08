@@ -3897,6 +3897,10 @@ td {
   object-position: center 62%;
 }
 
+.result-feature--kyoto-interhigh img {
+  object-position: center 58%;
+}
+
 .result-feature__content {
   display: flex;
   flex-direction: column;
@@ -4072,12 +4076,6 @@ td {
   font-size: clamp(1.05rem, 4.8vw, 1.38rem);
   line-height: 1.65;
   margin: 0.7rem 0 0;
-}
-
-@media (max-width: 719px) {
-  .results-timeline h3.results-timeline__title--mobile-compact {
-    font-size: 1rem;
-  }
 }
 
 .results-timeline__item--latest article {
