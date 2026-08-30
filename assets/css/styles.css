@@ -2107,10 +2107,10 @@ td {
 
 .information-strip {
   background:
-    radial-gradient(circle at 82% 12%, rgba(216, 183, 91, 0.11), transparent 18rem),
-    linear-gradient(135deg, rgba(10, 7, 14, 0.99), rgba(18, 10, 30, 0.98) 56%, rgba(7, 5, 11, 0.99)),
-    #09060d;
-  border-block: 1px solid rgba(216, 183, 91, 0.18);
+    radial-gradient(circle at 82% 8%, rgba(216, 183, 91, 0.2), transparent 18rem),
+    linear-gradient(135deg, rgba(111, 85, 38, 0.96), rgba(54, 37, 18, 0.98) 48%, rgba(18, 12, 10, 0.99)),
+    #2c1f11;
+  border-block: 1px solid rgba(216, 183, 91, 0.32);
   color: white;
 }
 
