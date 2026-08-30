@@ -2107,78 +2107,89 @@ td {
 
 .information-strip {
   background:
-    linear-gradient(90deg, rgba(9, 7, 12, 0.98), rgba(22, 18, 27, 0.96) 52%, rgba(10, 7, 13, 0.98)),
-    #0b080e;
+    radial-gradient(circle at 82% 12%, rgba(216, 183, 91, 0.11), transparent 18rem),
+    linear-gradient(135deg, rgba(10, 7, 14, 0.99), rgba(18, 10, 30, 0.98) 56%, rgba(7, 5, 11, 0.99)),
+    #09060d;
   border-block: 1px solid rgba(216, 183, 91, 0.18);
   color: white;
 }
 
 .information-strip__inner {
-  align-items: center;
+  align-items: start;
   display: grid;
-  column-gap: 3rem;
-  row-gap: 0.45rem;
-  grid-template-columns: minmax(160px, auto) minmax(0, 1fr);
+  column-gap: clamp(2rem, 6vw, 5.5rem);
+  row-gap: 1.25rem;
+  grid-template-columns: minmax(180px, 0.28fr) minmax(0, 1fr);
   margin: 0 auto;
   max-width: var(--max);
-  min-height: 54px;
-  padding: 0.5rem 1rem;
+  padding: clamp(1.7rem, 3.6vw, 2.75rem) 1rem;
 }
 
 .information-strip h2 {
   color: var(--gold);
   display: grid;
-  font-size: 0.72rem;
+  font-size: clamp(0.9rem, 1.35vw, 1.08rem);
   font-weight: 900;
-  gap: 0.12rem;
+  gap: 0.42rem;
   letter-spacing: 0.18em;
   margin: 0;
   white-space: nowrap;
 }
 
 .information-strip h2 small {
-  color: rgba(255, 255, 255, 0.54);
+  color: rgba(255, 255, 255, 0.58);
+  display: grid;
+  gap: 0.16rem;
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.12em;
 }
 
 .information-strip__items {
-  align-items: center;
   display: grid;
-  gap: 0.35rem 0;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.88fr);
 }
 
-.information-strip__items a {
-  align-items: baseline;
+.information-card,
+.information-list a {
   color: rgba(255, 255, 255, 0.86);
-  display: flex;
-  gap: 0.55rem;
-  min-width: 0;
-  padding-inline: 1.15rem;
-  position: relative;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease, color 0.22s ease, transform 0.22s ease;
 }
 
-.information-strip__items a:first-child {
-  padding-left: 0;
+.information-card {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(111, 45, 189, 0.08)),
+    rgba(8, 5, 13, 0.68);
+  border: 1px solid rgba(216, 183, 91, 0.22);
+  border-left: 2px solid rgba(216, 183, 91, 0.72);
+  display: grid;
+  gap: 0.85rem;
+  min-width: 0;
+  padding: clamp(1.1rem, 2.3vw, 1.45rem);
 }
 
-.information-strip__items a + a::before {
-  background: linear-gradient(180deg, transparent, rgba(216, 183, 91, 0.42), transparent);
-  content: "";
-  height: 1.35rem;
-  left: 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-}
-
-.information-strip__items a:hover {
+.information-card:hover,
+.information-card:focus-visible {
+  border-color: rgba(216, 183, 91, 0.44);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.28), 0 0 24px rgba(216, 183, 91, 0.07);
   color: white;
+  transform: translateY(-2px);
+}
+
+.information-card__meta {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.information-card__meta b {
+  color: rgba(216, 183, 91, 0.86);
+  font-size: 0.64rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
 }
 
 .information-strip time {
@@ -2189,14 +2200,49 @@ td {
   letter-spacing: 0.04em;
 }
 
-.information-strip__items span {
+.information-card strong {
+  color: var(--ink);
+  display: grid;
+  font-size: clamp(1.15rem, 2.8vw, 1.75rem);
+  font-weight: 900;
+  line-height: 1.45;
+}
+
+.information-card em {
+  color: rgba(216, 183, 91, 0.88);
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.information-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.information-list a {
+  align-items: baseline;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  display: flex;
+  gap: 0.7rem;
+  min-width: 0;
+  padding: 0.92rem 1rem;
+}
+
+.information-list a:hover,
+.information-list a:focus-visible {
+  border-color: rgba(216, 183, 91, 0.28);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.information-list span {
   font-size: 0.78rem;
   font-weight: 700;
   line-height: 1.45;
   min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .quick-apply {
@@ -3598,67 +3644,77 @@ td {
 
 @media (min-width: 769px) and (max-width: 1099px) {
   .information-strip__inner {
-    column-gap: 2rem;
-    grid-template-columns: minmax(150px, auto) minmax(0, 1fr);
-    min-height: 0;
-    padding-block: 0.5rem;
+    column-gap: 2.2rem;
+    grid-template-columns: minmax(150px, 0.26fr) minmax(0, 1fr);
+    padding-block: 1.6rem;
   }
 
   .information-strip__items {
-    gap: 0;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.72rem;
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .information-strip__items a {
-    min-width: 0;
+  .information-card {
+    padding: 1.15rem 1.25rem;
+  }
+
+  .information-card strong {
+    font-size: 1.32rem;
+  }
+
+  .information-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 768px) {
   .information-strip__inner {
-    align-items: center;
-    column-gap: 0.85rem;
-    row-gap: 0;
-    grid-template-columns: minmax(92px, auto) minmax(0, 1fr);
-    min-height: 0;
-    padding: 0.28rem 1rem;
+    column-gap: 0;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 1.35rem 1rem;
+    row-gap: 1rem;
   }
 
   .information-strip h2 {
-    font-size: 0.66rem;
-    gap: 0.05rem;
+    font-size: 0.82rem;
+    gap: 0.3rem;
   }
 
   .information-strip h2 small {
+    display: flex;
     font-size: 0.52rem;
+    gap: 0.55rem;
   }
 
   .information-strip__items {
-    gap: 0.02rem;
+    gap: 0.7rem;
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .information-strip__items a {
-    gap: 0.45rem;
-    min-width: 0;
-    padding-inline: 0;
+  .information-card {
+    gap: 0.75rem;
+    padding: 1rem;
   }
 
-  .information-strip__items a + a::before {
-    display: none;
+  .information-card strong {
+    font-size: 1.14rem;
+    line-height: 1.48;
   }
 
   .information-strip time {
     font-size: 0.68rem;
   }
 
-  .information-strip__items span {
+  .information-list a {
+    align-items: flex-start;
+    gap: 0.52rem;
+    padding: 0.78rem 0.85rem;
+  }
+
+  .information-list span {
     font-size: 0.68rem;
-    line-height: 1.18;
+    line-height: 1.42;
     min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .meiden-gallery {
