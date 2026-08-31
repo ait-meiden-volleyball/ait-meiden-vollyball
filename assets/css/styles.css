@@ -4596,6 +4596,23 @@ td {
 }
 
 @media (max-width: 1099px) {
+  @keyframes menuButtonGlow {
+    0% {
+      border-color: rgba(216, 183, 91, 0.22);
+      box-shadow: 0 0 0 rgba(216, 183, 91, 0);
+    }
+
+    45% {
+      border-color: rgba(216, 183, 91, 0.52);
+      box-shadow: 0 0 18px rgba(216, 183, 91, 0.16);
+    }
+
+    100% {
+      border-color: var(--line);
+      box-shadow: 0 0 0 rgba(216, 183, 91, 0);
+    }
+  }
+
   .menu-backdrop {
     background:
       linear-gradient(90deg, rgba(7, 3, 12, 0.34), rgba(7, 3, 12, 0.64)),
@@ -4664,8 +4681,60 @@ td {
   }
 
   .menu-button {
+    animation: menuButtonGlow 720ms ease 520ms 1 both;
     background: rgba(255, 255, 255, 0.025);
+    height: 48px;
     transition: border-color 180ms ease, background 180ms ease;
+    width: 46px;
+  }
+
+  .menu-button span,
+  .menu-button::before,
+  .menu-button::after {
+    left: 50%;
+    top: 17px;
+  }
+
+  .menu-button::before {
+    transform: translate(-50%, -6px);
+  }
+
+  .menu-button::after {
+    transform: translate(-50%, 6px);
+  }
+
+  .menu-button span {
+    transform: translateX(-50%);
+  }
+
+  .menu-button span::after {
+    background: transparent;
+    color: rgba(216, 183, 91, 0.86);
+    content: "MENU";
+    display: block;
+    font-size: 0.5rem;
+    font-weight: 800;
+    height: auto;
+    left: 50%;
+    letter-spacing: 0.14em;
+    line-height: 1;
+    position: absolute;
+    top: 13px;
+    transform: translateX(-50%);
+    width: max-content;
+  }
+
+  .menu-button[aria-expanded="true"]::before,
+  .menu-button[aria-expanded="true"]::after {
+    top: 50%;
+  }
+
+  .menu-button[aria-expanded="true"]::before {
+    transform: translateX(-50%) rotate(45deg);
+  }
+
+  .menu-button[aria-expanded="true"]::after {
+    transform: translateX(-50%) rotate(-45deg);
   }
 
   .menu-button[aria-expanded="true"] {
@@ -4768,6 +4837,12 @@ td {
     right: 1rem;
     top: 0.72rem;
     z-index: 10000;
+  }
+}
+
+@media (max-width: 1099px) and (prefers-reduced-motion: reduce) {
+  .menu-button {
+    animation: none;
   }
 }
 
