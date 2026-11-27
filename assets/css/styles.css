@@ -3955,6 +3955,10 @@ td {
   object-position: center 62%;
 }
 
+.result-feature--haruko-champion img {
+  object-position: center 68%;
+}
+
 .result-feature--kyoto-interhigh img {
   object-position: center 58%;
 }
@@ -4080,6 +4084,26 @@ td {
 .result-feature__matches b {
   color: var(--gold);
   font-size: 1rem;
+}
+
+.result-feature--haruko-champion .result-feature__matches li {
+  display: block;
+}
+
+.result-feature--haruko-champion .result-feature__matches small {
+  color: rgba(216, 183, 91, 0.84);
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.38rem;
+}
+
+.result-feature--haruko-champion .result-feature__matches li > div {
+  display: grid;
+  gap: 0.45rem;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  text-align: center;
 }
 
 .results-history {
