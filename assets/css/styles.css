@@ -5024,6 +5024,22 @@ td {
   pointer-events: none;
 }
 
+.next-match-card__footer {
+  margin-top: auto;
+}
+
+.next-match-card__footer .next-match-card__button {
+  margin-top: 0;
+}
+
+.next-match-card__notice {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  margin: 0.7rem 0 0;
+  text-align: center;
+}
+
 .next-match-doc-section {
   background:
     linear-gradient(180deg, rgba(111, 45, 189, 0.08), transparent 18rem),
