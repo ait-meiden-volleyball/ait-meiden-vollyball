@@ -1333,6 +1333,12 @@ h1 {
     url("../img/photos/kitagawa-gm.jpg") 52% 46% / cover;
 }
 
+article.staff-profile.staff-profile--gm .profile__photo {
+  background:
+    linear-gradient(160deg, rgba(216, 183, 91, 0.08), rgba(48, 15, 78, 0.16)),
+    url("../img/photos/kitagawa-gm-2026.jpg") 49% 46% / cover;
+}
+
 .profile:nth-child(2) .profile__photo {
   background:
     linear-gradient(160deg, rgba(216, 183, 91, 0.08), rgba(111, 45, 189, 0.13)),
@@ -2467,7 +2473,7 @@ td {
 .coach-feature__photo img {
   aspect-ratio: 4 / 5;
   height: auto;
-  object-position: 47% center;
+  object-position: 46% center;
 }
 
 .coach-feature__body {
